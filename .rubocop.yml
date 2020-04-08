@@ -1,0 +1,14 @@
+inherit_from:
+  - .rubocop_airbnb.yml
+#検証除外フォルダ指定
+AllCops:
+  Exclude:
+    - 'db/**/*'
+    - 'bin/*'
+    - 'config/environments/*'
+    - 'config/application.rb'
+    - 'config/initializers/*'
+    - 'config/spring.rb'
+    - 'config/credentials.yml.enc'
+    - 'lib/tasks/*'
+    - 'vendor/**/*'
