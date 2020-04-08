@@ -7,7 +7,9 @@ services:
       MYSQL_DATABASE: root
     ports:
       - "3306:3306"
-
+    volumes:
+      - ./db/mysql_init:/docker-entrypoint-initdb.d
+      - ./db/mysql_data:/var/lib/mysql
   web:
     build: .
     command: rails s -p 3000 -b '0.0.0.0'
