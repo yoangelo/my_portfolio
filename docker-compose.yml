@@ -7,7 +7,8 @@ services:
       MYSQL_DATABASE: root
     ports:
       - "3306:3306"
-
+    volumes:
+      - ./docker/mysql/volumes:/var/lib/mysql
   web:
     build: .
     command: rails s -p 3000 -b '0.0.0.0'
