@@ -1,6 +1,12 @@
-<div class="col-md-12 rev-card">
-  <h1><%= @review.title %></h1>
-  <p><%= @review.created_at.strftime("%Y年%m月%d日") %></p>
-  <p><%= safe_join(@review.body.split("\n"), tag(:br)) %></p>
-  <%= image_tag "food_sample.jpeg", class: "img-fluid" %>
+<div class="row">
+  <div class="col-md-12 rev-card">
+    <h1><%= @review.title %></h1>
+    <p><%= @review.created_at.strftime("%Y年%m月%d日") %></p>
+    <p><%= safe_join(@review.body.split("\n"), tag(:br)) %></p>
+    <%= image_tag "food_sample.jpeg", class: "img-fluid" %>
+  </div>
+</div>
+<div class="row">
+  <%=link_to "編集する",edit_review_path, class:"btn btn-primary"%>
+  <%=link_to "削除する",review_path, method: :delete, class:"btn btn-danger1"%>
 </div>
