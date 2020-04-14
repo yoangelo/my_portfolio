@@ -1,0 +1,7 @@
+<h1> タイトル</h1>
+<% @reviews.each do |review| %>
+  <div class="col-md-4">
+    <%= review.title %>
+    <%= review.created_at %>
+  </div>
+<% end %>
