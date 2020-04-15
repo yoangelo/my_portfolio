@@ -1,4 +1,5 @@
-<%= form_with model:@review do |f| %>
+<%= form_with model:@review, local: true do |f| %>
+
   <div class="form-group">
     <%= f.label :title,"タイトル"  %>
     <%= f.text_field :title, class:"form-control" %>
