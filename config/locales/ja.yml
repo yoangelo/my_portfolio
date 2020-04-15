@@ -1,0 +1,8 @@
+ja:
+  activerecord:
+    models:
+      review:
+    attributes:
+      review:
+        title: タイトル
+        body: 本文

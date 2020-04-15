@@ -1,0 +1,12 @@
+<%= form_with model:@review, local: true do |f| %>
+
+  <div class="form-group">
+    <%= f.label :title,"タイトル"  %>
+    <%= f.text_field :title, class:"form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :body,"本文"  %>
+    <%= f.text_area :body, size: "20x10", class:"form-control" %>
+  </div>
+  <%= f.submit "投稿",class:"btn btn-primary" %>
+<% end %>
