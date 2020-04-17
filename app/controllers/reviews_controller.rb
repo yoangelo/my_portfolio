@@ -1,5 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :find_review, only:[:show, :edit, :update, :destroy]
+  before_action :sign_in_required, only: [:show]
 
   def index
     @reviews = Review.order(created_at: :desc)
