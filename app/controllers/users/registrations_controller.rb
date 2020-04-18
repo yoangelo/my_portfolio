@@ -10,9 +10,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    super
+    if resource
+      profile = Profile.new
+      profile.user_id = resource.id
+      profile.name = params[:profile][:name]
+      profile.save
+    end
+  end
 
   # GET /resource/edit
   # def edit
@@ -59,4 +65,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+  # private
+  #   def profile_params
+  #     params.require(:user).permit(profile: [:name])
+  #   end
 end
