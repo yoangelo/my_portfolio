@@ -13,6 +13,7 @@ class ReviewsController < ApplicationController
 
   def new
     @review = Review.new
+    @review.review_images.build
   end
 
   def edit
@@ -52,7 +53,7 @@ class ReviewsController < ApplicationController
     end
 
     def review_params
-      params.require(:review).permit(:title, :body)
+      params.require(:review).permit(:title, :body, review_images_images: [])
     end
 
     def validate_user
