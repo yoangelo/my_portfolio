@@ -1,6 +1,7 @@
 class ReviewsController < ApplicationController
   before_action :find_review, only:[:show, :edit, :update, :destroy]
   before_action :sign_in_required, only: [:new]
+  before_action :validate_user, only:[:edit, :update, :destroy]
   # before_action :authenticate_user!
 
   def index
@@ -20,6 +21,7 @@ class ReviewsController < ApplicationController
 
   def create
     @review = Review.new(review_params)
+    @review.user_id = current_user.id
     if @review.save
       redirect_to @review, notice: "作成できました"
     else
@@ -51,5 +53,12 @@ class ReviewsController < ApplicationController
 
     def review_params
       params.require(:review).permit(:title, :body)
+    end
+
+    def validate_user
+      if @review.user != current_user
+        flash[:alert] = "無効なURLです"
+        redirect_back(fallback_location: reviews_path)
+      end
     end
 end
