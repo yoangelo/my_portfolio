@@ -7,6 +7,8 @@
   </div>
 </div>
 <div class="row">
-  <%=link_to "編集する",edit_review_path, class:"btn btn-success"%>
-  <%=link_to "削除する",review_path, method: :delete, class:"btn btn-danger"%>
+  <% if @review.user == current_user %>
+    <%=link_to "編集する",edit_review_path, class:"btn btn-success"%>
+    <%=link_to "削除する",review_path, method: :delete, class:"btn btn-danger"%>
+  <% end %>
 </div>
