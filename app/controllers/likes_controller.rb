@@ -5,6 +5,7 @@ class LikesController < ApplicationController
     @review = Review.find(params[:review_id])
     unless @review.like_rev?(current_user)
       @review.like_rev(current_user)
+      @review.reload
       respond_to do |format|
         format.html { redirect_to request.referrer || root_url }
         format.js
@@ -16,6 +17,7 @@ class LikesController < ApplicationController
     @review = Like.find(params[:id]).review
     if @review.like_rev?(current_user)
       @review.un_like_rev(current_user)
+      @review.reload
       respond_to do |format|
         format.html { redirect_to request.referrer || root_url }
         format.js
