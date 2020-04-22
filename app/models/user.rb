@@ -7,6 +7,7 @@ class User < ApplicationRecord
 
   has_one :profile, dependent: :destroy
   has_many :review, dependent: :destroy
+  has_many :likes, dependent: :destroy
 
   delegate :name, to: :profile
 

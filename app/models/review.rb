@@ -3,5 +3,6 @@ class Review < ApplicationRecord
   validates :title, presence: true, length: { maximum: 50 }
   validates :body, presence: true
   has_many :review_images, dependent: :destroy
+  has_many :likes, dependent: :destroy
   accepts_attachments_for :review_images, attachment: :image
 end
