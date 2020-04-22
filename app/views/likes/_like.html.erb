@@ -2,7 +2,7 @@
     <% if @review.like_rev?(current_user) %>
       <%= form_for(@review.likes.find_by(user_id: current_user.id), method: :delete, remote: true) do |f| %>
         <%= button_tag(class: "btn btn-default btn-xs") do %>
-          <%= content_tag :span, "いいね", class: "glyphicon glyphicon-heart" %>
+          <%= content_tag :span, "よくないね", class: "glyphicon glyphicon-heart" %>
         <% end %>
       <% end %>
     <% else %>

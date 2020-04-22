@@ -3,11 +3,23 @@ class LikesController < ApplicationController
 
   def create
     @review = Review.find(params[:review_id])
-    @review.like_rev(current_user)
+    unless @review.like_rev?(current_user)
+      @review.like_rev(current_user)
+      respond_to do |format|
+        format.html { redirect_to request.referrer || root_url }
+        format.js
+      end
+    end
   end
 
   def destroy
     @review = Like.find(params[:id]).review
-    @review.un_like_rev(current_user)
+    if @review.like_rev?(current_user)
+      @review.un_like_rev(current_user)
+      respond_to do |format|
+        format.html { redirect_to request.referrer || root_url }
+        format.js
+      end
+    end
   end
 end
