@@ -2,14 +2,16 @@
   <% if review.like_rev?(current_user) %>
     <%= form_for(review.likes.find_by(user_id: current_user.id), method: :delete, remote: true) do |f| %>
       <%= button_tag(class: "btn btn-default btn-xs") do %>
-        <%= content_tag :span, "#{review.likes_count}", class: "glyphicon glyphicon-heart" %>
+        <i class="fa fa-heart"></i>
+        <%= content_tag :span, "#{review.likes_count}" %>
       <% end %>
     <% end %>
   <% else %>
     <%= form_for(review.likes.build, remote: true) do |f| %>
       <div><%= hidden_field_tag :review_id, review.id %></div>
       <%= button_tag(class: "btn btn-default btn-xs") do %>
-        <%= content_tag :span, "#{review.likes_count}", class: "glyphicon glyphicon-heart-empty" %>
+        <i class="fa fa-heart-o"></i>
+        <%= content_tag :span, "#{review.likes_count}" %>
       <% end %>
     <% end %>
   <% end %>
