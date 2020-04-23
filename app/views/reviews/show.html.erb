@@ -17,3 +17,25 @@
     <%=link_to "削除する",review_path, method: :delete, class:"btn btn-danger"%>
   <% end %>
 </div>
+<div class="row">
+  <div class="col-sm">
+    <h2>コメント一覧</h2>
+    <% @comments.each do |c| %>
+    <div class="media-body">
+      <h4 class="media-headding">
+        <a href="/users/<%= c.user.id %>"><%= c.user.name %></a>
+      </h4>
+      <%= c.body %>
+      <hr>
+    </div>
+    <br>
+    <% end %>
+    <div class="col align-self-end">
+      <%= form_for [@review, @comment] do |f| %>
+      <%= f.text_area :body, size: "20x10", class:"form-control"  %>
+      <%= f.hidden_field :review_id, value: @review.id %><br>
+      <%= f.submit 'コメントする',class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>
