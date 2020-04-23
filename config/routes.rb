@@ -6,7 +6,9 @@ Rails.application.routes.draw do
     :registrations => 'users/registrations'
   }
   root 'static_pages#home'
-  resources :reviews
+  resources :reviews do
+    resources :comments, only: [:create,:destroy]
+  end
   resources :likes, only: [:create, :destroy]
 
 end
