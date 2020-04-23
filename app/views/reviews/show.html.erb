@@ -3,10 +3,15 @@
     <h1><%= @review.title %></h1>
     <p><%= @review.created_at.strftime("%Y年%m月%d日") %></p>
     <p><%= safe_join(@review.body.split("\n"), tag(:br)) %></p>
-    <%= image_tag "food_sample.jpeg", class: "img-fluid" %>
+    <% if @review.review_images.present? %>
+      <% @review.review_images.each do |image| %>
+        <%= attachment_image_tag image, :image, :fill, 200, 200 %>
+      <% end %>
+    <% end %>
   </div>
 </div>
 <div class="row">
+  <%= render "likes/like", review: @review %>
   <% if @review.user == current_user %>
     <%=link_to "編集する",edit_review_path, class:"btn btn-success"%>
     <%=link_to "削除する",review_path, method: :delete, class:"btn btn-danger"%>

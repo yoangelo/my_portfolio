@@ -42,6 +42,11 @@ gem "devise"
 gem "omniauth-twitter"
 gem "devise-i18n"
 gem "devise-i18n-views"
+gem "refile", github: 'refile/refile', require: "refile/rails"
+gem "refile-mini_magick", github: 'refile/refile-mini_magick'
+gem "font-awesome-rails"
+gem "jquery-rails"
+gem "counter_culture"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

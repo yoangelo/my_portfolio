@@ -8,5 +8,11 @@
     <%= f.label :body,"本文"  %>
     <%= f.text_area :body, size: "20x10", class:"form-control" %>
   </div>
+  <div class="form-group float-right relative" id="cover-image">
+    <div class="btn-flat-simple">
+      <i class="fa fa-camera"></i>写真を投稿
+    </div>
+  </div>
+  <%= f.attachment_field :review_images_images, multiple: true, class:"btn-flat-simple"%>
   <%= f.submit "投稿",class:"btn btn-primary" %>
 <% end %>
