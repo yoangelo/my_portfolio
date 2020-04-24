@@ -7,6 +7,7 @@ class Review < ApplicationRecord
   has_many :like_rev_users, through: :likes, source: :user
   has_many :comments
   accepts_attachments_for :review_images, attachment: :image
+  has_many :notifications, dependent: :destroy
 
   def like_rev(user)
     likes.create(user_id: user.id)
