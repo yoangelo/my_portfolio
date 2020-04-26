@@ -4,6 +4,7 @@ class CommentsController < ApplicationController
     @comment.user_id = current_user.id
     @review = @comment.review
     if @comment.save
+      @review.create_notification_comment!(current_user, @comment.id)
       redirect_back(fallback_location: reviews_path)
     else
       redirect_back(fallback_location: reviews_path)
