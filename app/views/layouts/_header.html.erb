@@ -13,6 +13,7 @@
         <li class="nav-item"><%= link_to "(仮)リンク2", "#", class:"nav-link" %></li>
         <% if user_signed_in? %>
           <strong><%= link_to "#{current_user.name}", reviews_path %></strong>
+          <li class="nav-item"><%= render "notifications/circle" %></li>
           <li class="nav-item"><%= link_to "プロフィール変更", edit_user_registration_path, class:"nav-link" %></li>
           <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"nav-link" %></li>
         <% else %>

@@ -5,6 +5,7 @@ class LikesController < ApplicationController
     @review = Review.find(params[:review_id])
     unless @review.like_rev?(current_user)
       @review.like_rev(current_user)
+      @review.create_notification_like!(current_user)
       @review.reload
       respond_to do |format|
         format.html { redirect_to request.referrer || root_url }

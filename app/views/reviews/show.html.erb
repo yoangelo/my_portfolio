@@ -2,6 +2,7 @@
   <div class="col-md-12 rev-card">
     <h1><%= @review.title %></h1>
     <p><%= @review.created_at.strftime("%Y年%m月%d日") %></p>
+    <p>投稿者:<%= @review.user.name %></p>
     <p><%= safe_join(@review.body.split("\n"), tag(:br)) %></p>
     <% if @review.review_images.present? %>
       <% @review.review_images.each do |image| %>
