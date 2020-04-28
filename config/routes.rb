@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   }
   root 'static_pages#home'
   resources :reviews do
-    resources :comments, only: [:create,:destroy]
+    resources :comments
   end
   resources :likes, only: [:create, :destroy]
   resources :notifications, only: :index

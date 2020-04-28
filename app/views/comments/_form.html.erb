@@ -1,0 +1,9 @@
+<%= form_with(model: [review, comment] ) do |form| %>
+  <div>
+    <%= form.text_area :body %>
+    <%= form.hidden_field :review_id, value: review.id %><br>
+  </div>
+  <div class="actions">
+    <%= form.submit "コメントをする" %>
+  </div>
+<% end %>
