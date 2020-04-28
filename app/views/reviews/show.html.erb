@@ -20,23 +20,14 @@
 </div>
 <div class="row">
   <div class="col-sm">
-    <h2>コメント一覧</h2>
-    <% @comments.each do |c| %>
-    <div class="media-body">
-      <h4 class="media-headding">
-        <a href="/users/<%= c.user.id %>"><%= c.user.name %></a>
-      </h4>
-      <%= c.body %>
-      <hr>
+    <h4>コメント</h4>
+    <div id="comments_area"><!-- #① -->
+      <!-- 投稿されたコメント一覧をレビューの詳細ページに表示するためのrender -->
+      <%= render partial: 'comments/index', locals: { comments: @comments } %>
     </div>
-    <br>
+    <% if user_signed_in? %>
+      <!-- コメント入力欄をレビューの詳細ページに表示するためのrender -->
+      <%= render partial: 'comments/form', locals: { comment: @comment, review: @review } %>
     <% end %>
-    <div class="col align-self-end">
-      <%= form_for [@review, @comment] do |f| %>
-      <%= f.text_area :body, size: "20x10", class:"form-control"  %>
-      <%= f.hidden_field :review_id, value: @review.id %><br>
-      <%= f.submit 'コメントする',class: "btn btn-primary" %>
-      <% end %>
-    </div>
   </div>
 </div>
