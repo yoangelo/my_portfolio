@@ -9,8 +9,8 @@ class ReviewsController < ApplicationController
   end
 
   def show
-    @comments = @review.comments
     @comment = Comment.new
+    @comments = @review.comments
   end
 
   def new

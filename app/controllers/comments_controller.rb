@@ -6,6 +6,7 @@ class CommentsController < ApplicationController
     if @comment.save
       @review.create_notification_comment!(current_user, @comment.id)
       render :index
+      # comments/index.js.erb を探しに行く
     else
       redirect_back(fallback_location: reviews_path)
     end
@@ -15,6 +16,8 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
     if @comment.destroy
       render :index
+    else
+      redirect_back(fallback_location: reviews_path)
     end
   end
 
