@@ -1,11 +1,12 @@
 class Review < ApplicationRecord
   belongs_to :user
+  belongs_to :restaurant
   validates :title, presence: true, length: { maximum: 50 }
   validates :body, presence: true
   has_many :review_images, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :like_rev_users, through: :likes, source: :user
-  has_many :comments
+  has_many :comments, dependent: :destroy
   accepts_attachments_for :review_images, attachment: :image
   has_many :notifications, dependent: :destroy
 
