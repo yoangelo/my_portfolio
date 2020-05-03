@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   get 'restaurants/new'
-  get 'restaurants/create'
+  post 'restaurants/create'
   get 'restaurants/destroy'
   get 'likes/create'
   get 'likes/destroy'
