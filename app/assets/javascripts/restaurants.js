@@ -4,7 +4,7 @@ $(document).on('turbolinks:load', function() {
     // ページ移行を回避
     e.preventDefault();
     const requestUrl = 'https://api.gnavi.co.jp/RestSearchAPI/v3/';
-    const APIkey = "00bb35b9d4890f5a49841203ebe942c8";
+    const APIkey = ENV["GURUNAVI_API_KEY"];
     const name = $('#name').val();
     console.log(name);
 
