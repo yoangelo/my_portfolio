@@ -4,6 +4,6 @@ class Restaurant < ApplicationRecord
   validates :address, presence: true
 
   def serch_equal_restaurant
-
+    
   end
 end
