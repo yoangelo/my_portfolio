@@ -1,5 +1,6 @@
 $(document).on('turbolinks:load', function() {
   var rest =null;
+  var cancelFlag = 0;
   $('#search').on("click",function(e) {
     // ページ移行を回避
     e.preventDefault();
@@ -17,10 +18,13 @@ $(document).on('turbolinks:load', function() {
       }
     }).done(function(data) {
       if (data != null){
-        rest = data.rest
-        rest.forEach(function(e){
-          $('#rest_lists').append(`<li id="rest_list"><input type="radio" name="rest_name">${e.name}</li>`)
-        })
+        if(cancelFlag == 0){
+          cancelFlag = 1;
+          rest = data.rest
+          rest.forEach(function(e){
+            $('#rest_lists').append(`<li id="rest_list"><input type="radio" name="rest_name">${e.name}</li>`)
+          })
+        }
       } else{
         $('.result').append(`<li>検索結果は0件でした</li>`);
       }
@@ -48,5 +52,6 @@ $(document).on('turbolinks:load', function() {
   });
   $('#name').on("keyup",function(e) {
     $('#rest_lists').empty();
+    cancelFlag = 0;
   });
 });
