@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'restaurants/new'
+  post 'restaurants/create'
+  get 'restaurants/destroy'
   get 'likes/create'
   get 'likes/destroy'
   devise_for :users, controllers: {

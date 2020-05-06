@@ -52,5 +52,3 @@ production:
   database: app_name_production
   username: root
   password:
-  host: localhost
-  socket: /var/lib/mysql/mysql.sock
