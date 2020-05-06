@@ -4,7 +4,7 @@ $(document).on('turbolinks:load', function() {
     // ページ移行を回避
     e.preventDefault();
     const requestUrl = 'https://api.gnavi.co.jp/RestSearchAPI/v3/';
-    const APIkey = ENV["GURUNAVI_API_KEY"];
+    const APIkey = $('#apikey').val();
     const name = $('#name').val();
     console.log(name);
 
@@ -18,9 +18,8 @@ $(document).on('turbolinks:load', function() {
     }).done(function(data) {
       if (data != null){
         rest = data.rest
-        console.log(data)
         rest.forEach(function(e){
-          $('#rest_list').append(`<li><input type="radio" name="rest_name">${e.name}</li>`)
+          $('#rest_lists').append(`<li id="rest_list"><input type="radio" name="rest_name">${e.name}</li>`)
         })
       } else{
         $('.result').append(`<li>検索結果は0件でした</li>`);
@@ -36,6 +35,7 @@ $(document).on('turbolinks:load', function() {
     console.log(rest[checked_index]);
     console.log(rest[checked_index].name);
     console.log(rest[checked_index].address);
+    console.log(rest[checked_index].id);
     $.ajax({
       type: "POST",
       url:  "/restaurants/create",
@@ -45,5 +45,8 @@ $(document).on('turbolinks:load', function() {
         id: rest[checked_index].id
       }
     });
+  });
+  $('#name').on("keyup",function(e) {
+    $('#rest_lists').empty();
   });
 });
