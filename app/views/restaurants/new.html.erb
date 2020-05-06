@@ -1,6 +1,9 @@
 <div class="result"></div>
+  <input type="hidden" value="<%= ENV["GURUNAVI_API_KEY"] %>" id="apikey">
   <input type="text" name="namae" id="name">
   <input type="submit" value="検索する" id="search">
-  <ul id="rest_list">
+  <input type="submit" value="消す" id="delete">
+  <ul id="rest_lists">
+    
   </ul>
   <input type="submit" value="投稿する" id="submit">
