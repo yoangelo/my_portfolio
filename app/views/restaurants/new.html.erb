@@ -4,4 +4,6 @@
   <input type="submit" value="検索する" id="search">
   <ul id="rest_lists">
   </ul>
-  <input type="submit" value="投稿する" id="submit">
+  <%= link_to new_review_path do %>
+    <p id="submit">登録する</p>
+  <% end %>
