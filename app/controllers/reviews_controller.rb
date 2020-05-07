@@ -14,6 +14,19 @@ class ReviewsController < ApplicationController
   end
 
   def new
+    puts "=============ここから================"
+    puts params[:name]
+    @restaurant = Restaurant.new(
+      name:    params[:name],
+      address: params[:address],
+      res_id:  params[:res_id],
+      tell:    params[:tell]
+    )
+    if @restaurant.save
+      puts "保存されました"
+    else
+      puts "すでに保存されてます"
+    end
     @review = Review.new
     @review.review_images.build
   end
@@ -24,6 +37,8 @@ class ReviewsController < ApplicationController
 
   def create
     @review = Review.new(review_params)
+    @restaurant = Restaurant.last
+    # @review.restaurant_id = current_restaurant.id
     @review.user_id = current_user.id
     if @review.save
       redirect_to @review, notice: "作成できました"
