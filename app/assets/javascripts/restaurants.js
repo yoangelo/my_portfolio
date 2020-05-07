@@ -40,13 +40,15 @@ $(document).on('turbolinks:load', function() {
     console.log(rest[checked_index].name);
     console.log(rest[checked_index].address);
     console.log(rest[checked_index].id);
+    console.log(rest[checked_index].tel);
     $.ajax({
-      type: "POST",
-      url:  "/restaurants/create",
+      type: "GET",
+      url:  "/reviews/new",
       data:{
         name: rest[checked_index].name,
         address: rest[checked_index].address,
-        id: rest[checked_index].id
+        res_id: rest[checked_index].id,
+        tell: rest[checked_index].tel
       }
     });
   });
