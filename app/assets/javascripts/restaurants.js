@@ -25,35 +25,34 @@ $(document).on('turbolinks:load', function() {
             $('#rest_lists').append(`<li id="rest_list"><input type="radio" name="rest_name">${e.name}</li>`)
           })
         }
-      } else{
-        $('.result').append(`<li>検索結果は0件でした</li>`);
       }
     }).fail(function() {
-      alert('情報の取得に失敗しました');
+      if(cancelFlag == 0){
+        cancelFlag = 1;
+        $('.result').append(`<li>検索結果は0件でした</li>`);
+      }
     });
   });
 
   $('#submit').on("click",function(e) {
-    console.log(rest);
     const checked_index = $("input:radio").toArray().findIndex(e => e.checked);
-    console.log(rest[checked_index]);
-    console.log(rest[checked_index].name);
-    console.log(rest[checked_index].address);
-    console.log(rest[checked_index].id);
-    console.log(rest[checked_index].tel);
     $.ajax({
-      type: "GET",
-      url:  "/reviews/new",
+      type: "POST",
+      url:  "/restaurants/create",
       data:{
         name: rest[checked_index].name,
         address: rest[checked_index].address,
         res_id: rest[checked_index].id,
         tell: rest[checked_index].tel
       }
+    }).done(function(data) {
+    }).fail(function() {
+      alert('エラーが発生しました。詳細はkenose0328@gmail.comへお問い合わせください。');
     });
   });
   $('#name').on("keyup",function(e) {
     $('#rest_lists').empty();
+    $('.result').empty();
     cancelFlag = 0;
   });
 });
