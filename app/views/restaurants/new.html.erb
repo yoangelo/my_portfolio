@@ -1,9 +1,7 @@
 <div class="result"></div>
-  <input type="hidden" value="<%= ENV["GURUNAVI_API_KEY"] %>" id="apikey">
-  <input type="text" name="namae" id="name">
-  <input type="submit" value="検索する" id="search">
-  <ul id="rest_lists">
-  </ul>
-  <%= link_to new_review_path do %>
-    <p id="submit">登録する</p>
-  <% end %>
+<input type="hidden" value="<%= ENV["GURUNAVI_API_KEY"] %>" id="apikey">
+<input type="text" name="namae" id="name">
+<input type="submit" value="検索する" id="search">
+<ul id="rest_lists">
+</ul>
+<button type="button" name="button" id="submit">登録する</button>
