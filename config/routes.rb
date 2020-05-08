@@ -10,8 +10,10 @@ Rails.application.routes.draw do
     confirmations: 'users/confirmations'
   }
   root 'static_pages#home'
-  resources :reviews do
-    resources :comments
+  resources :restaurants, only: [:new, :create, :destroy] do
+    resources :reviews do
+      resources :comments
+    end
   end
   resources :likes, only: [:create, :destroy]
   resources :notifications, only: :index
