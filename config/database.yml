@@ -52,3 +52,4 @@ production:
   database: app_name_production
   username: root
   password:
+  host: localhost

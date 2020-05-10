@@ -7,26 +7,23 @@ class RestaurantsController < ApplicationController
     end
   end
 
-  # def search_api
-  #   @apikey = ENV["GURUNAVI_API_KEY"]
-  #   @search_word = "マクドナルド"
-  #   uri = URI.parse("https://api.gnavi.co.jp/RestSearchAPI/v3/?keyid=#{@apikey}&name=#{@search_word}")
-  #   get_response(uri)=
-  #
-  # end
 
   def create
-    @restaurant = Restaurant.new(name: params[:name],address: params[:address])
-
-    @restaurant.save
-    # if @restaurant.save
-    #   redirect_to review_path(@restaurant)
-    # else
-    #   redirect_to new_restaurant_path
-    # end
+    puts params[:name]
+    @restaurant = Restaurant.new(
+      name:    params[:name],
+      address: params[:address],
+      res_id:  params[:res_id],
+      tell:    params[:tell]
+    )
+    if @restaurant.save
+      puts "保存されました"
+      redirect_to new_restaurant_review_path(restaurant_id: @restaurant.id)
+    else
+      puts "すでに保存されてます"
+      @rest = Restaurant.find_by(res_id: @restaurant.res_id)
+      redirect_to new_restaurant_review_path(restaurant_id: @rest.id)
+    end
   end
 
-  # def restaurant_params #ストロングパラメータで制限する。
-  #   params.require(:restaurant).permit(:name)
-  # end
 end

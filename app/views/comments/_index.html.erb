@@ -3,7 +3,7 @@
     <p><%= link_to "#{comment.user.name}さん" %></p>
     <p>コメント：<%= comment.body %></p>
     <% if comment.user == current_user %>
-      <p><%= link_to 'コメントを削除する', review_comment_path(comment.review_id, comment.id), method: :delete, remote: true %></p>
+      <p><%= link_to 'コメントを削除する', restaurant_review_comment_path(review_id: comment.review_id, id: comment.id), method: :delete, remote: true %></p>
     <% end %>
   <% end %>
 <% end %>

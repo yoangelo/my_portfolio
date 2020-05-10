@@ -1,5 +1,5 @@
-<%= form_with model:@review, local: true do |f| %>
-
+<h2><%= @restaurant.name %></h2>
+<%= form_with model: [@restaurant, @review], local: true do |f| %>
   <div class="form-group">
     <%= f.label :title,"タイトル"  %>
     <%= f.text_field :title, class:"form-control" %>

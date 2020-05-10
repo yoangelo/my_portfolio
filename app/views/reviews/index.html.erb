@@ -1,11 +1,11 @@
 <h1 class="text-center">タイトル</h1>
 <div class="row">
-  <%=link_to "投稿する",new_review_path,class:"btn btn-primary"%>
+  <%=link_to "投稿する",restaurants_new_path,class:"btn btn-primary"%>
 </div>
 <div class="row">
   <% @reviews.each do |review| %>
     <div class="col-md-8 rev-card">
-      <%= link_to review_path(review) do %>
+      <%= link_to restaurant_review_path(id: review.id) do %>
         <p class="rev-card-title"><%= review.title %></p>
         <p><%= review.created_at.strftime("%Y年%m月%d日") %></p>
         <p>投稿者：<%= review.user.name %></p>
