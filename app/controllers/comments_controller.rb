@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
       render :index
       # comments/index.js.erb を探しに行く
     else
-      redirect_back(fallback_location: reviews_path)
+      render :error
     end
   end
 
@@ -17,7 +17,7 @@ class CommentsController < ApplicationController
     if @comment.destroy
       render :index
     else
-      redirect_back(fallback_location: reviews_path)
+      redirect_back(fallback_location: restaurant_review_path(id: @review.id))
     end
   end
 
