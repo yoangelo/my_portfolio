@@ -28,7 +28,9 @@
     </div>
     <% if user_signed_in? %>
       <!-- コメント入力欄をレビューの詳細ページに表示するためのrender -->
-      <%= render partial: 'comments/form', locals: { comment: @comment, review: @review } %>
+      <div id="error_area">
+        <%= render partial: 'comments/form', locals: { comment: @comment, review: @review } %>
+      </div>
     <% end %>
   </div>
 </div>
