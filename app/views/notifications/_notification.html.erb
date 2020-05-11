@@ -7,9 +7,17 @@
       <%= visitor.name %>さんが
       <% case notification.action %>
         <% when 'like' then %>
-          <%= link_to 'あなたの投稿', notification.review, style: "font-weight: bold;" %>にいいねしました
+          <%= link_to 'あなたの投稿', restaurant_review_path(
+            restaurant_id: notification.review.restaurant_id,
+            id: notification.review.id
+          ),
+          style: "font-weight: bold;" %>にいいねしました
         <% when 'comment' then %>
-          <%= link_to "あなたの投稿", notification.review, style: "font-weight: bold;" %>にコメントしました
+          <%= link_to "あなたの投稿", restaurant_review_path(
+            restaurant_id: notification.review.restaurant_id,
+            id: notification.review.id
+          ),
+          style: "font-weight: bold;" %>にコメントしました
       <% end %>
     </span>
   </div>
