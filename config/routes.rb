@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     confirmations: 'users/confirmations'
   }
   get "alltags", to: "static_pages#alltags"
+  get "search", to: "reviews#search"
   root 'static_pages#home'
   resources :restaurants, only: [:new, :create, :destroy] do
     resources :reviews do
