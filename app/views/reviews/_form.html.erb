@@ -8,6 +8,10 @@
     <%= f.label :body,"本文"  %>
     <%= f.text_area :body, size: "20x10", class:"form-control" %>
   </div>
+  <div class="form-group">
+    <%= f.label :tag_list,"タグの入力"  %>
+    <%= f.text_field :tag_list, value: @review.tag_list.join(','), class:"form-control", placeholder: ",で区切ると複数登録できます。例:目黒,カフェ" %>
+  </div>
   <div class="form-group float-right relative" id="cover-image">
     <div class="btn-flat-simple">
       <i class="fa fa-camera"></i>写真を投稿

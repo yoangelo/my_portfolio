@@ -5,7 +5,8 @@ class ReviewsController < ApplicationController
   # before_action :authenticate_user!
 
   def index
-    @reviews = Review.order(created_at: :desc)
+    @restaurant = Restaurant.find(params[:restaurant_id])
+    @reviews = @restaurant.reviews
   end
 
   def show
@@ -62,7 +63,7 @@ class ReviewsController < ApplicationController
     end
 
     def review_params
-      params.require(:review).permit(:title, :body, review_images_images: [])
+      params.require(:review).permit(:title, :body, :tag_list, review_images_images: [])
     end
 
     def validate_user

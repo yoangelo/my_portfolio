@@ -10,6 +10,8 @@
         <%= attachment_image_tag image, :image, :fill, 200, 200 %>
       <% end %>
     <% end %>
+    <br>
+    <%= render "reviews/tag_list", tag_list: @review.tag_list %>
   </div>
 </div>
 <div class="row">
