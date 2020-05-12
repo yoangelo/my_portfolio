@@ -2,7 +2,6 @@
   <div class="col-md-12 rev-card">
     <h1><%= @review.title %></h1>
     <h2><%= @restaurant.name %>の口コミ</h2>
-    <%= render "reviews/tag_list", tag_list: @review.tag_list %>
     <p><%= @review.created_at.strftime("%Y年%m月%d日") %></p>
     <p>投稿者:<%= @review.user.name %></p>
     <p><%= safe_join(@review.body.split("\n"), tag(:br)) %></p>
@@ -11,6 +10,8 @@
         <%= attachment_image_tag image, :image, :fill, 200, 200 %>
       <% end %>
     <% end %>
+    <br>
+    <%= render "reviews/tag_list", tag_list: @review.tag_list %>
   </div>
 </div>
 <div class="row">
