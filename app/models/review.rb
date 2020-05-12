@@ -1,5 +1,6 @@
 class Review < ApplicationRecord
   acts_as_taggable
+  default_scope -> { order(created_at: :desc) }
   belongs_to :user
   belongs_to :restaurant
   validates :title, presence: true, length: { maximum: 50 }
@@ -64,5 +65,13 @@ class Review < ApplicationRecord
       notification.checked = true
     end
     notification.save if notification.valid?
+  end
+
+  def self.search(search)
+    if search
+        Review.where(['body LIKE ?', "%#{search}%"])
+      else
+        Review.all
+      end
   end
 end

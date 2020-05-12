@@ -48,12 +48,15 @@ class ReviewsController < ApplicationController
   end
 
   def destroy
-
     if @review.destroy
       redirect_to root_path, notice: "削除に成功しました"
     else
       redirect_to restaurant_review_path(id: @review.id), alert: "削除できませんでした"
     end
+  end
+
+  def search
+    @reviews = Review.search(params[:search])
   end
 
   private
