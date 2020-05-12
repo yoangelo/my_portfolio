@@ -1,4 +1,6 @@
-<h1 class="text-center">タイトル</h1>
+<h1 class="text-center">
+  <%= @restaurant.name %>の口コミ一覧
+</h1>
 <div class="row">
   <%=link_to "投稿する",restaurants_new_path,class:"btn btn-primary"%>
 </div>
@@ -15,6 +17,7 @@
           <% end %>
         <% end %>
       <% end %>
+      <%= render "reviews/tag_list", tag_list: review.tag_list %>
     </div>
   <% end %>
 </div>
