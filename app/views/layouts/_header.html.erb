@@ -17,8 +17,8 @@
           <li class="nav-item"><%= link_to "プロフィール変更", edit_user_registration_path, class:"nav-link" %></li>
           <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"nav-link" %></li>
         <% else %>
-          <li class="nav-item"><%= link_to 'サインアップ', new_user_registration_path, class:"nav-link" %></li>
-          <li class="nav-item"><%= link_to 'ログイン', new_user_session_path, class:"nav-link" %></li>
+        <li class="nav-item nav-link pointer" id="signup-show">新規登録</li>
+        <li class="nav-item nav-link pointer" id="login-show">ログイン</li>
         <% end %>
         <li class="nav-item dropdown">
           <a href="" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
