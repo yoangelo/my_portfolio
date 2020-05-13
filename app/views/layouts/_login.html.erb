@@ -1,0 +1,20 @@
+<div class="login-modal-wrapper" id="login-modal">
+  <div class="log-modal">
+    <div class="close-modal">
+      <i class="fa fa-2x fa-times"></i>
+    </div>
+    <div id="login-form">
+      <h2>ログイン</h2>
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-ctl", placeholder: "メールアドレス" %>
+        <%= f.password_field :password, autocomplete: "current-password", class:"form-ctl", placeholder: "パスワード" %>
+        <% if devise_mapping.rememberable? %>
+          <%= f.check_box :remember_me, class: "remember_me_check" %>
+          <p class="remember_me_label">ログイン状態を保存</p>
+        <% end %>
+        <%= f.submit "ログイン", id:"submit-btn" %>
+      <% end %>
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
+</div>
