@@ -1,7 +1,7 @@
 $(function() {
   var rest =null;
   var cancelFlag = 0;
-  $('#search').on("click",function(e) {
+  $('#rest_search').on("click",function(e) {
     // ページ移行を回避
     e.preventDefault();
     const requestUrl = 'https://api.gnavi.co.jp/RestSearchAPI/v3/';
