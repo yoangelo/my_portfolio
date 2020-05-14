@@ -1,4 +1,4 @@
-$(document).on('turbolinks:load', function() {
+$(function() {
   var rest =null;
   var cancelFlag = 0;
   $('#search').on("click",function(e) {
