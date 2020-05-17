@@ -41,7 +41,7 @@ RSpec.describe Review, type: :model do
     context "Userモデルとのアソシエーション" do
       let (:target) { :user }
 
-      it "Profileとの関連付けはhas_oneであること" do
+      it "Profileとの関連付けはbelongs_toであること" do
         expect(association.macro).to eq :belongs_to
       end
     end
