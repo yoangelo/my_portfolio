@@ -41,7 +41,7 @@ RSpec.describe Review, type: :model do
     context "Userモデルとのアソシエーション" do
       let (:target) { :user }
 
-      it "Profileとの関連付けはbelongs_toであること" do
+      it "Restaurantとの関連付けはbelongs_toであること" do
         expect(association.macro).to eq :belongs_to
       end
     end
@@ -49,7 +49,7 @@ RSpec.describe Review, type: :model do
     context "Restaurantモデルとのアソシエーション" do
       let (:target) { :restaurant }
 
-      it "Profileとの関連付けはhas_oneであること" do
+      it "Restaurantとの関連付けはhas_oneであること" do
         expect(association.macro).to eq :belongs_to
       end
     end
