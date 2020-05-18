@@ -1,6 +1,7 @@
 FactoryBot.define do
   factory :profile do
-    user { nil }
-    name { "MyString" }
+    user_id { 111 }
+    name { "TEST" }
+    association :user
   end
 end
