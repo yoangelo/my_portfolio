@@ -1,4 +1,6 @@
 class RestaurantsController < ApplicationController
+  include AjaxHelper
+
   def new
     @restaurant = Restaurant.new
     respond_to do |format|
@@ -6,7 +8,6 @@ class RestaurantsController < ApplicationController
       format.json ##jsonで出力します。
     end
   end
-
 
   def create
     puts params[:name]
@@ -18,11 +19,15 @@ class RestaurantsController < ApplicationController
     )
     if @restaurant.save
       puts "保存されました"
-      redirect_to new_restaurant_review_path(restaurant_id: @restaurant.id)
+      respond_to do |format|
+        format.js { render ajax_redirect_to(new_restaurant_review_path(restaurant_id: @restaurant.id)) }
+      end
     else
       puts "すでに保存されてます"
       @rest = Restaurant.find_by(res_id: @restaurant.res_id)
-      redirect_to new_restaurant_review_path(restaurant_id: @rest.id)
+      respond_to do |format|
+        format.js { render ajax_redirect_to(new_restaurant_review_path(restaurant_id: @rest.id)) }
+      end
     end
   end
 

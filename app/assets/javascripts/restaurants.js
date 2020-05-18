@@ -38,7 +38,7 @@ $(function() {
     const checked_index = $("input:radio").toArray().findIndex(e => e.checked);
     $.ajax({
       type: "POST",
-      url:  "/restaurants/create",
+      url:  "/restaurants",
       data:{
         name: rest[checked_index].name,
         address: rest[checked_index].address,
