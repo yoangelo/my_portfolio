@@ -15,7 +15,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
     if resource
       profile = Profile.new
       profile.user_id = resource.id
-      puts "===============ここから======================"
       puts params[:profile_name]
       profile.name = params[:profile_name]
       profile.save
