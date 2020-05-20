@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Profile, type: :model do
   it "有効なファクトリを持つこと" do
-    expect(FactoryBot.build(:profile_user)).to be_valid
+    expect(FactoryBot.build(:profile)).to be_valid
   end
 
   context "Profileモデルのバリデーション" do
@@ -12,7 +12,6 @@ RSpec.describe Profile, type: :model do
       profile.valid?
       expect(profile.errors[:name]).to include("を入力してください")
     end
-
   end
   describe "各モデルとのアソシエーション" do
     let(:association) do
