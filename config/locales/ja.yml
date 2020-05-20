@@ -10,4 +10,4 @@ ja:
       comment:
         body: コメント本文
       user:
-        profile: 名前(ニックネーム)
+        username: 名前(ニックネーム)
