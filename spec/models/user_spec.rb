@@ -14,6 +14,12 @@ RSpec.describe User, type: :model do
       expect(user.errors[:email]).to include("が入力されていません。")
     end
 
+    it "名前(ニックネーム)がなければ無効な状態であること" do
+      user = FactoryBot.build(:user, username: nil)
+      user.valid?
+      expect(user.errors[:username]).to include("を入力してください")
+    end
+
     it "パスワードがなければ無効な状態であること" do
       user = FactoryBot.build(:user, password: nil)
       user.valid?
