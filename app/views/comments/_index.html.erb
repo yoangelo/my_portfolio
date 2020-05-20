@@ -1,6 +1,6 @@
 <% comments.each do |comment| %>
   <% unless comment.id.nil? %>
-    <p><%= link_to "#{comment.user.name}さん" %></p>
+    <p><%= link_to "#{comment.user.username}さん" %></p>
     <p>コメント：<%= comment.body %></p>
     <% if comment.user == current_user %>
       <p><%= link_to 'コメントを削除する', restaurant_review_comment_path(review_id: comment.review_id, id: comment.id), method: :delete, remote: true %></p>
