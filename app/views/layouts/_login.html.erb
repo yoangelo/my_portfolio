@@ -6,13 +6,13 @@
     <div id="login-form">
       <h2>ログイン</h2>
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-ctl", placeholder: "メールアドレス" %>
-        <%= f.password_field :password, autocomplete: "current-password", class:"form-ctl", placeholder: "パスワード" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-ctl", placeholder: "メールアドレス", id: "login_user_email" %>
+        <%= f.password_field :password, autocomplete: "current-password", class:"form-ctl", placeholder: "パスワード", id: "login_user_password" %>
         <% if devise_mapping.rememberable? %>
           <%= f.check_box :remember_me, class: "remember_me_check" %>
           <p class="remember_me_label">ログイン状態を保存</p>
         <% end %>
-        <%= f.submit "ログイン", id:"submit-btn" %>
+        <%= f.submit "ログインする", id:"submit-btn" %>
       <% end %>
       <%= render "devise/shared/links" %>
     </div>

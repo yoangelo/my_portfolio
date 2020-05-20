@@ -16,7 +16,7 @@ RSpec.describe 'Users', type: :system do
       visit root_path
       expect(page).to have_http_status :ok
 
-      click_on "新規登録"
+      click_button "新規登録"
       fill_in "new_profile_name", with: "test_name"
       fill_in "new_user_email", with: "test@test"
       fill_in "new_user_password", with: "password"
@@ -29,7 +29,7 @@ RSpec.describe 'Users', type: :system do
       visit root_path
       expect(page).to have_http_status :ok
 
-      click_on "新規登録"
+      click_button "新規登録"
       fill_in "new_profile_name", with: "test_name"
       fill_in "new_user_email", with: "test@test"
       fill_in "new_user_password", with: "password"
@@ -42,8 +42,14 @@ RSpec.describe 'Users', type: :system do
       visit url
       expect(page).to have_content "メールアドレスが確認できました。"
 
-      click_on "ログアウト"
+      click_link "ログアウト"
       expect(page).to have_content 'ログアウトしました。'
+
+      click_button "ログイン"
+      fill_in "login_user_email", with: "test@test"
+      fill_in "login_user_password", with: "password"
+      click_on "ログインする"
+      expect(page).to have_content "ログインしました。"
     end
   end
 end
