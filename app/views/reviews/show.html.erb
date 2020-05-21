@@ -19,7 +19,7 @@
   <%= render "likes/like", review: @review %>
   <% if @review.user == current_user %>
     <%=link_to "編集する",edit_restaurant_review_path, class:"btn btn-success"%>
-    <%=link_to "削除する",restaurant_review_path, method: :delete, class:"btn btn-danger"%>
+    <%=link_to "削除する",restaurant_review_path, method: :delete, class:"btn btn-danger", data: {confirm: "本当にこの投稿を削除しますか？" }%>
   <% end %>
 </div>
 <div class="row">
