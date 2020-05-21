@@ -52,4 +52,32 @@ RSpec.describe 'Users', type: :system do
       expect(page).to have_content "ログインしました。"
     end
   end
+
+  describe "Twitterでのログインができること" do
+    before do
+      OmniAuth.config.test_mode = true
+      FactoryBot.create(:user)
+      OmniAuth.config.mock_auth[:twitter] = {
+        "uid" => "123",
+        "provider" => "twitter",
+        "info" => {
+          "nickname" => "anonymous"
+        }
+      }
+      visit user_twitter_omniauth_authorize_path
+    end
+
+    context "ログイン確認" do
+      before do
+        visit root_path
+      end
+      it "ログアウトが表示されておりログイン状態となっている" do
+        expect(page).to have_content "ログアウト"
+      end
+    end
+
+    after do
+      OmniAuth.config.test_mode = false
+    end
+  end
 end
