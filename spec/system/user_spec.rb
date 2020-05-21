@@ -11,7 +11,6 @@ RSpec.describe 'Users', type: :system do
       body[/http[^"]+/]
     end
 
-
     it "パスワードが正しく２回入力されていないとエラーになる" do
       visit root_path
       expect(page).to have_http_status :ok
