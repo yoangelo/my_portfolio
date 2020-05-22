@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :find_review, only:[:show, :edit, :update, :destroy]
-  before_action :sign_in_required, only: [:new]
+  before_action :sign_in_required, only: [:new, :edit]
   before_action :validate_user, only:[:edit, :update, :destroy]
   # before_action :authenticate_user!
 
