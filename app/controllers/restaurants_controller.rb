@@ -1,5 +1,6 @@
 class RestaurantsController < ApplicationController
   include AjaxHelper
+  before_action :sign_in_required, only: [:new]
 
   def new
     @restaurant = Restaurant.new
