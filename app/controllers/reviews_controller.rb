@@ -73,7 +73,7 @@ class ReviewsController < ApplicationController
       @review = Review.find(params[:id])
       if @review.user != current_user
         flash[:alert] = "無効なURLです"
-        redirect_back(fallback_location: reviews_path)
+        redirect_back(fallback_location: restaurant_review_path)
       end
     end
 end
