@@ -4,7 +4,6 @@ RSpec.describe "Notifications", type: :system do
   let (:current_user) { FactoryBot.create(:user) }
   let (:other_user)   { FactoryBot.create(:user, email: "other_test@test.com", username: "other") }
   let (:current_rest) { FactoryBot.create(:restaurant) }
-  # 呼びだし時に投稿作成
   let (:current_rev)  { FactoryBot.create(:review, restaurant_id: current_rest.id, user_id: current_user.id ) }
 
   describe "ユーザーがログインしているとき", js: true do
