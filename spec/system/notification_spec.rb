@@ -10,14 +10,7 @@ RSpec.describe "Notifications", type: :system do
   describe "ユーザーがログインしているとき", js: true do
     context "レビューに投稿者以外のユーザーがコメントといいねを行う" do
       before do
-        # 他のユーザーでログイン
-        visit root_path
-        find("li", text: "ログイン").click
-        sleep 2
-        fill_in "login_user_email", with: other_user.email
-        fill_in "login_user_password", with: other_user.password
-        click_on "ログインする"
-        # 他のユーザーでコメントおよびいいね
+        login_test_user(other_user)
         visit restaurant_review_path(restaurant_id: current_rest.id, id: current_rev.id)
         find("i", id: "uniine_like").click
         fill_in "body", with: "テストコメントです"
@@ -25,12 +18,7 @@ RSpec.describe "Notifications", type: :system do
         click_link "ログアウト"
       end
       it "通知ページにコメントといいねしたことが表示される" do
-        visit root_path
-        find("li", text: "ログイン").click
-        sleep 2
-        fill_in "login_user_email", with: current_user.email
-        fill_in "login_user_password", with: current_user.password
-        click_on "ログインする"
+        login_test_user(current_user)
         visit notifications_path
         expect(page).to have_selector 'span', text: "otherさんが"
         expect(page).to have_selector 'a', text: "あなたの投稿"
@@ -40,14 +28,7 @@ RSpec.describe "Notifications", type: :system do
     end
     context "レビューに投稿者自身がコメントといいねを行う" do
       before do
-        # 投稿ユーザーでログイン
-        visit root_path
-        find("li", text: "ログイン").click
-        sleep 2
-        fill_in "login_user_email", with: current_user.email
-        fill_in "login_user_password", with: current_user.password
-        click_on "ログインする"
-        # 投稿ユーザーでコメントおよびいいね
+        login_test_user(current_user)
         visit restaurant_review_path(restaurant_id: current_rest.id, id: current_rev.id)
         find("i", id: "uniine_like").click
         fill_in "body", with: "テストコメントです"

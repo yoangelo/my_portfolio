@@ -9,11 +9,7 @@ RSpec.describe "Comments", type: :system do
 
   describe "ユーザーがログインしているとき" do
     before do
-      visit root_path
-      find("li", text: "ログイン").click
-      fill_in "login_user_email", with: login_user.email
-      fill_in "login_user_password", with: login_user.password
-      click_on "ログインする"
+      login_test_user(login_user)
       current_com
       visit restaurant_review_path(restaurant_id: current_rest.id, id: current_rev.id)
     end

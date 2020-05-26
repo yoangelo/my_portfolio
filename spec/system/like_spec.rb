@@ -9,17 +9,12 @@ RSpec.describe "Like", type: :system do
 
   describe "ユーザーがログインしているとき", js: true do
     before do
-      visit root_path
-      find("li", text: "ログイン").click
-      sleep 2
-      fill_in "login_user_email", with: login_user.email
-      fill_in "login_user_password", with: login_user.password
-      click_on "ログインする"
+      login_test_user(login_user)
       visit restaurant_review_path(restaurant_id: current_rest.id, id: current_rev.id)
     end
     context "いいねができること" do
       let (:login_user) { current_user }
-      
+
       it "いいねをしたあとに解除もできること" do
         find("i", id: "uniine_like").click
         expect(page).to have_selector "i", id: "iine_like"
