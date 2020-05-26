@@ -1,5 +1,5 @@
 <%= form_with(url: restaurant_review_comments_path(review_id: review.id) ) do |form| %>
-  <div>
+  <div id="comment_area">
     <%= form.text_area :body %>
     <%= form.hidden_field :review_id, value: review.id %><br>
   </div>

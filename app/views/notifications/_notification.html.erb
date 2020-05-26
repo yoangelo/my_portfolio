@@ -4,7 +4,7 @@
   <div class="form-inline">
     <span>
       <i class="fa fa-home"></i>
-      <%= visitor.name %>さんが
+      <%= visitor.username %>さんが
       <% case notification.action %>
         <% when 'like' then %>
           <%= link_to 'あなたの投稿', restaurant_review_path(
