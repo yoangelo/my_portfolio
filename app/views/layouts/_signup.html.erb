@@ -7,14 +7,14 @@
       <h2>ユーザー新規登録</h2>
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
-        <%= text_field_tag "profile_name", "", class: "form-ctl", placeholder: "名前(ニックネーム)" %>
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-ctl", placeholder: "メールアドレス" %>
+        <%= f.text_field :username, class: "form-ctl", placeholder: "名前(ニックネーム)", id: "new_profile_name" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-ctl", placeholder: "メールアドレス", id: "new_user_email" %>
         <% if @minimum_password_length %>
           <em>(<%= @minimum_password_length %> 文字以上で入力)</em>
         <% end %><br />
-        <%= f.password_field :password, autocomplete: "new-password", class:"form-ctl", placeholder: "パスワード" %>
-        <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-ctl", placeholder: "パスワード(確認)" %>
-        <%= f.submit "登録" ,id:"submit-btn" %>
+        <%= f.password_field :password, autocomplete: "new-password", class:"form-ctl", placeholder: "パスワード", id: "new_user_password" %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-ctl", placeholder: "パスワード(確認)", id: "new_user_password_confirmation" %>
+        <%= f.submit "新規登録する" ,id:"submit-btn" %>
       <% end %>
 
       <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
@@ -23,7 +23,7 @@
 
       <%- if devise_mapping.omniauthable? %>
         <%- resource_class.omniauth_providers.each do |provider| %>
-          <%= link_to " #{OmniAuth::Utils.camelize(provider)}でログイン", omniauth_authorize_path(resource_name, provider) %><br />
+          <%= link_to " #{OmniAuth::Utils.camelize(provider)}で新規登録", omniauth_authorize_path(resource_name, provider) %><br />
         <% end %>
       <% end %>
     </div>

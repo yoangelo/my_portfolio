@@ -1,6 +1,8 @@
 FactoryBot.define do
   factory :like do
-    user_id { 1 }
-    review_id { 1 }
+    review_id { 100 }
+    user_id { 100 }
+    association :review
+    association :user
   end
 end

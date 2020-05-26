@@ -1,5 +1,8 @@
 require "capybara/rspec"
 
+ENV['RAILS_ENV'] = 'test'
+require File.expand_path('../../config/environment', __FILE__)
+
 RSpec.configure do |config|
   config.before(:each, type: :system) do
     driven_by :selenium_chrome_headless
@@ -30,4 +33,6 @@ RSpec.configure do |config|
   config.order = :random
 
   Kernel.srand config.seed
+
+  config.include Capybara::DSL
 end

@@ -6,7 +6,14 @@ require File.expand_path('../config/environment', __dir__)
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
+Capybara.server_host = Socket.ip_address_list.detect{|addr| addr.ipv4_private?}.ip_address
+Capybara.server_port = 3000
 
+Capybara.register_driver :selenium_remote do |app|
+  url = "http://chrome:4444/wd/hub"
+  opts = { desired_capabilities: :chrome, browser: :remote, url: url }
+  driver = Capybara::Selenium::Driver.new(app, opts)
+end
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
 # run as spec files by default. This means that files in spec/support that end
@@ -20,7 +27,7 @@ require 'rspec/rails'
 # directory. Alternatively, in the individual `*_spec.rb` files, manually
 # require only the support files necessary.
 #
-# Dir[Rails.root.join('spec', 'support', '**', '*.rb')].sort.each { |f| require f }
+Dir[Rails.root.join('spec', 'support', '**', '*.rb')].sort.each { |f| require f }
 
 # Checks for pending migrations and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove these lines.
@@ -31,13 +38,30 @@ rescue ActiveRecord::PendingMigrationError => e
   exit 1
 end
 RSpec.configure do |config|
+
+  config.before(:each, type: :system) do
+    driven_by :rack_test
+  end
+
+  config.before(:each, type: :system, js: true) do
+    driven_by :selenium_remote
+    host! "http://#{Capybara.server_host}:#{Capybara.server_port}"
+  end
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
+
+  config.before(:suite) do
+    DatabaseRewinder.clean_all
+  end
+
+  config.after(:each) do
+    DatabaseRewinder.clean
+  end
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
-  config.use_transactional_fixtures = true
+  config.use_transactional_fixtures = false
 
   # You can uncomment this line to turn off ActiveRecord support entirely.
   # config.use_active_record = false
@@ -61,4 +85,9 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+
+  config.include FactoryBot::Syntax::Methods
+  # ajaxの処理完了を待つためのヘルパーメソッド
+  config.include WaitForAjax, type: :system
+  config.include LoginTestUser, type: :system
 end

@@ -4,7 +4,7 @@
     <h1><%= @review.title %></h1>
     <h2><%= @restaurant.name %>の口コミ</h2>
     <p><%= @review.created_at.strftime("%Y年%m月%d日") %></p>
-    <p>投稿者:<%= @review.user.name %></p>
+    <p>投稿者:<%= @review.user.username %></p>
     <p><%= safe_join(@review.body.split("\n"), tag(:br)) %></p>
     <% if @review.review_images.present? %>
       <% @review.review_images.each do |image| %>
@@ -19,7 +19,7 @@
   <%= render "likes/like", review: @review %>
   <% if @review.user == current_user %>
     <%=link_to "編集する",edit_restaurant_review_path, class:"btn btn-success"%>
-    <%=link_to "削除する",restaurant_review_path, method: :delete, class:"btn btn-danger"%>
+    <%=link_to "削除する",restaurant_review_path, method: :delete, class:"btn btn-danger", data: {confirm: "本当にこの投稿を削除しますか？" }%>
   <% end %>
 </div>
 <div class="row">

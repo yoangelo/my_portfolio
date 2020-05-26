@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :find_review, only:[:show, :edit, :update, :destroy]
-  before_action :sign_in_required, only: [:new]
+  before_action :sign_in_required, only: [:new, :edit]
   before_action :validate_user, only:[:edit, :update, :destroy]
   # before_action :authenticate_user!
 
@@ -56,7 +56,11 @@ class ReviewsController < ApplicationController
   end
 
   def search
-    @reviews = Review.search(params[:search])
+    unless params[:search].blank?
+      @reviews = Review.search(params[:search])
+    else
+      redirect_back fallback_location: root_path, notice: "検索したい本文のキーワードを入力してください"
+    end
   end
 
   private
@@ -73,7 +77,7 @@ class ReviewsController < ApplicationController
       @review = Review.find(params[:id])
       if @review.user != current_user
         flash[:alert] = "無効なURLです"
-        redirect_back(fallback_location: reviews_path)
+        redirect_back(fallback_location: restaurant_review_path)
       end
     end
 end

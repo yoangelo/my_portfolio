@@ -2,9 +2,12 @@ ja:
   activerecord:
     models:
       review:
+
     attributes:
       review:
         title: タイトル
         body: 本文
       comment:
         body: コメント本文
+      user:
+        username: 名前(ニックネーム)

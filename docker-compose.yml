@@ -18,5 +18,11 @@ services:
       - "3000:3000"
     links:
       - db
+      - chrome
     stdin_open: true
     tty: true
+    #rspecテストを行うためにselinium_chromeを使用
+  chrome:
+    image: selenium/standalone-chrome:latest
+    ports:
+      - 4444:4444
