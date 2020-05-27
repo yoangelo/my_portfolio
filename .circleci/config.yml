@@ -3,10 +3,9 @@ jobs:
   build:
     # docker-composeがインストール済みの仮想マシンをプル
     machine:
-    - image: circleci/classic:edge
-      environment:
-        DB_HOST: 127.0.0.1
-    - image: circleci/mysql:5.7
+      - image: circleci/classic:edge
+        environment:
+          DB_HOST: 127.0.0.1
     # CI環境上の circleci/classic の値の場所にGitリポジトリをコピーする
     steps:
       - checkout
