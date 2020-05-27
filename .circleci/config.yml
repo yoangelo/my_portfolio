@@ -11,6 +11,9 @@ jobs:
           name: Dockerコンテナのビルド
           command: docker-compose build
       - run:
+          name: 'Dockerコンテナの起動を待機'
+          command: dockerize -wait tcp://localhost:3306 -timeout 1m
+      - run:
           name: Dockerコンテナの起動
           command: docker-compose up -d
       - run:
