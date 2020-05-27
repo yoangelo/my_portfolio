@@ -1,8 +1,8 @@
 test:
-  adapter: postgresql
-  encoding: unicode
+  adapter: mysql2
+  encoding: utf8
   host: db
-  username: postgres
+  username: root
   password:
   pool: 5
   database: app_name_test
