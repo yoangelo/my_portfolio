@@ -3,15 +3,13 @@ jobs:
   build:
     # docker-composeがインストール済みの仮想マシンをプル
     machine:
-      image: circleci/classic:edge
+    - image: circleci/classic:edge
+      environment:
+        DB_HOST: 127.0.0.1
+    - image: circleci/mysql:5.7
     # CI環境上の circleci/classic の値の場所にGitリポジトリをコピーする
     steps:
       - checkout
-      - run:
-          name: database.ymlの再設定
-          command: |
-            rm ./config/database.yml
-            mv ./config/database.ci.yml ./config/database.yml
       - run:
           name: Dockerコンテナのビルド
           command: docker-compose build
@@ -20,7 +18,7 @@ jobs:
           command: docker-compose up -d
       - run:
           name: データベースのセットアップ
-          command: docker-compose exec web bundle exec rails db:create db:migrate
+          command: docker-compose exec web bundle exec rails db:create db:migrate RAILS_ENV=test
       - run:
           name: RSpecテスト実行
           command: docker-compose exec web bundle exec bin/rspec
