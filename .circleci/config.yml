@@ -27,10 +27,10 @@ jobs:
           command: sleep 30
       - run:
           name: データベースの作成
-          command: docker-compose exec web rails db:create RAILS_ENV=test
+          command: docker-compose exec web rails db:create
       - run:
           name: データベースのセットアップ
-          command: docker-compose exec web rails db:migrate RAILS_ENV=test
+          command: docker-compose exec web rails db:migrate
       - run:
           name: RSpecテスト実行
           command: docker-compose exec web bundle exec rspec
