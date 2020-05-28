@@ -27,8 +27,8 @@ development:
 test:
   <<: *default
   database: app_name_test
-  username: <%= ENV['DB_USERNAME'] || 'root' %>
-  password: <%= ENV['DB_PASSWORD'] || '' %>
+  # username: <%= ENV['DB_USdocker network inspect docker_defaultERNAME'] || 'root' %>
+  # password: <%= ENV['DB_PASSWORD'] || '' %>
   # host: <%= ENV['DB_HOST'] || '127.0.0.1' %>
 
 # As with config/secrets.yml, you never want to store sensitive information,
