@@ -29,7 +29,7 @@ test:
   database: app_name_test
   username: <%= ENV['DB_USERNAME'] || 'root' %>
   password: <%= ENV['DB_PASSWORD'] || '' %>
-  host: <%= ENV['DB_HOST'] || '127.0.0.1' %>
+  # host: <%= ENV['DB_HOST'] || '127.0.0.1' %>
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
