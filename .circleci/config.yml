@@ -19,7 +19,7 @@ jobs:
           command: docker-compose up -d
       - run:
           name: sleep for waiting launch db
-          command: sleep 10
+          command: sleep 30
       - run:
           name: データベースの作成
           command: docker-compose exec web rails db:create RAILS_ENV=test
