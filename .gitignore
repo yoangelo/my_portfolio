@@ -29,3 +29,4 @@
 .env
 .vscode
 /spec/examples.txt
+.DS_Store
