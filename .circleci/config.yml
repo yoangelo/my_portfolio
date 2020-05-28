@@ -11,27 +11,27 @@ jobs:
            DB_PASSWORD: ''
     steps:
       - checkout
-      # - run:
-      #     name: Dockerコンテナのビルド
-      #     command: docker-compose build
-      # - run:
-      #     name: Dockerコンテナの起動
-      #     command: docker-compose up -d
-      # - run:
-      #     name: sleep for waiting launch db
-      #     command: sleep 30
-      # - run:
-      #     name: データベースの作成
-      #     command: docker-compose exec web rails db:create RAILS_ENV=test
-      # - run:
-      #     name: データベースのセットアップ
-      #     command: docker-compose exec web rails db:migrate RAILS_ENV=test
-      # - run:
-      #     name: RSpecテスト実行
-      #     command: docker-compose exec web bundle exec rspec
-      # - run:
-      #     name: Rubocopテスト実行
-      #     command: docker-compose exec web bundle exec rubocop
+      - run:
+          name: Dockerコンテナのビルド
+          command: docker-compose build
+      - run:
+          name: Dockerコンテナの起動
+          command: docker-compose up -d
+      - run:
+          name: sleep for waiting launch db
+          command: sleep 30
+      - run:
+          name: データベースの作成
+          command: docker-compose exec web rails db:create RAILS_ENV=test
+      - run:
+          name: データベースのセットアップ
+          command: docker-compose exec web rails db:migrate RAILS_ENV=test
+      - run:
+          name: RSpecテスト実行
+          command: docker-compose exec web bundle exec rspec
+      - run:
+          name: Rubocopテスト実行
+          command: docker-compose exec web bundle exec rubocop
       - run:
           name: Dockerコンテナの停止
           command: docker-compose down
