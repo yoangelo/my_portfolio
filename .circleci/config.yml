@@ -15,9 +15,12 @@ jobs:
       - run:
           name: sleep for waiting launch db
           command: sleep 10
-      # - run:
-          # name: データベースのセットアップ
-          # command: docker-compose exec web rails db:create db:migrate RAILS_ENV=test
+      - run:
+          name: データベースの作成
+          command: docker-compose exec web rails db:create RAILS_ENV=test
+      - run:
+          name: データベースのセットアップ
+          command: docker-compose exec web rails db:migrate RAILS_ENV=test
       - run:
           name: RSpecテスト実行
           command: docker-compose exec web bundle exec rspec
