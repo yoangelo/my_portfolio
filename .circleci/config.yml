@@ -1,55 +1,29 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/my_portfolio
-    docker:
-      - image: circleci/ruby:2.5.1-node-browsers
-        environment:
-          RAILS_ENV: test
-      - image: mysql:5.7
-        environment:
-          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+    # docker-composeがインストール済みの仮想マシンをプル
+    machine:
+      image: circleci/classic:edge
     steps:
       - checkout
-      - restore_cache:
-          keys:
-            - app-{{ checksum "Gemfile.lock" }}-{{ checksum "yarn.lock" }}
-            - app-
-      - run: bundle install --path vendor/bundle
-      - run: yarn install
-      - save_cache:
-          key: app-{{ checksum "Gemfile.lock" }}-{{ checksum "yarn.lock" }}
-          paths:
-            - vendor/bundle
-            - node_modules
-      - run: cp config/database.yml.circleci config/database.yml
-      - run: bundle exec rake db:create db:schema:load
-      - run: bundle exec rspec
-# jobs:
-#   build:
-#     # docker-composeがインストール済みの仮想マシンをプル
-#     machine:
-#       image: circleci/classic:edge
-#     steps:
-#       - checkout
-#       - run:
-#           name: Dockerコンテナのビルド
-#           command: docker-compose build
-#       - run:
-#           name: Dockerコンテナの起動
-#           command: docker-compose up -d
-#       - run:
-#           name: sleep for waiting launch db
-#           command: sleep 1
-#       - run:
-#           name: データベースのセットアップ
-#           command: docker-compose run web rails db:create db:migrate RAILS_ENV=test
-#       - run:
-#           name: RSpecテスト実行
-#           command: docker-compose exec web bundle exec bin/rspec
-#       - run:
-#           name: Rubocopテスト実行
-#           command: docker-compose exec web bundle exec rubocop
-#       - run:
-#           name: Dockerコンテナの停止
-#           command: docker-compose down
+      - run:
+          name: Dockerコンテナのビルド
+          command: docker-compose build
+      - run:
+          name: Dockerコンテナの起動
+          command: docker-compose up -d
+      - run:
+          name: sleep for waiting launch db
+          command: sleep 1
+      - run:
+          name: データベースのセットアップ
+          command: docker-compose exec web rails db:create db:migrate RAILS_ENV=test
+      - run:
+          name: RSpecテスト実行
+          command: docker-compose exec web bundle exec bin/rspec
+      - run:
+          name: Rubocopテスト実行
+          command: docker-compose exec web bundle exec rubocop
+      - run:
+          name: Dockerコンテナの停止
+          command: docker-compose down
