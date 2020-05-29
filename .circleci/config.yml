@@ -22,11 +22,17 @@ jobs:
           name: データベースのセットアップ
           command: docker-compose exec web rails db:migrate RAILS_ENV=test
       - run:
+          name: webコンテナ内に入る
+          command: docker-compose run web bash
+      - run:
           name: RSpecテスト実行
-          command: docker-compose exec web bundle exec rspec
+          command: bundle exec rspec
       - run:
           name: Rubocopテスト実行
-          command: docker-compose exec web bundle exec rubocop
+          command: bundle exec rubocop
+      - run:
+          name: webコンテナから出る
+          command: exit
       - run:
           name: Dockerコンテナの停止
           command: docker-compose down
