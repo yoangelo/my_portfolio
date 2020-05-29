@@ -14,7 +14,7 @@ jobs:
           command: docker-compose up -d
       - run:
           name: sleep for waiting launch db
-          command: sleep 300
+          command: sleep 30
       - run:
           name: データベースの作成
           command: docker-compose exec web rails db:create RAILS_ENV=test
@@ -22,17 +22,17 @@ jobs:
           name: データベースのセットアップ
           command: docker-compose exec web rails db:migrate RAILS_ENV=test
       - run:
-          name: webコンテナ内に入る
-          command: docker-compose run web bash
-      - run:
-          name: RSpecテスト実行
-          command: bundle exec rspec
+          name: Rspecテスト実行
+          command: |
+            docker-compose run web bash
+            bundle exec rspec
+            exit
       - run:
           name: Rubocopテスト実行
-          command: bundle exec rubocop
-      - run:
-          name: webコンテナから出る
-          command: exit
+          command: |
+            docker-compose run web bash
+            bundle exec rubocop
+            exit
       - run:
           name: Dockerコンテナの停止
           command: docker-compose down
