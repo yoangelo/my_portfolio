@@ -36,7 +36,7 @@ jobs:
        steps:
            - checkout
            - add_ssh_keys:
-           - run: ssh ${USER_NAME}@${HOST_NAME} 'cd /var/www/rails/my_portfolio/ && git pull origin master'
+           - run: ssh ${SSH} 'cd /var/www/rails/my_portfolio/ && git pull origin master'
 
 workflows:
    version: 2
