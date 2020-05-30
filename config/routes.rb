@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
     omniauth_callbacks: "omniauth_callbacks",
     registrations: 'users/registrations',
-    confirmations: 'users/confirmations'
+    confirmations: 'users/confirmations',
   }
   get "alltags", to: "static_pages#alltags"
   get "search", to: "reviews#search"
@@ -16,5 +16,4 @@ Rails.application.routes.draw do
   end
   resources :likes, only: [:create, :destroy]
   resources :notifications, only: :index
-
 end
