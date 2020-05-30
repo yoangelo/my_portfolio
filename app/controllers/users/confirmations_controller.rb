@@ -25,6 +25,7 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
 
   # The path used after confirmation.
   private
+
   def after_confirmation_path_for(resource_name, resource)
     sign_in(resource)
     root_path
