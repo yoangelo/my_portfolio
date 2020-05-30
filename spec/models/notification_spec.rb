@@ -6,7 +6,7 @@ RSpec.describe Notification, type: :model do
   end
 
   context "Reviewモデルとのアソシエーション" do
-    let (:target) { :review }
+    let(:target) { :review }
 
     it "Reviewとの関連付けはbelongs_toであること" do
       expect(association.macro).to eq :belongs_to
@@ -14,7 +14,7 @@ RSpec.describe Notification, type: :model do
   end
 
   context "Commentモデルとのアソシエーション" do
-    let (:target) { :comment }
+    let(:target) { :comment }
 
     it "Reviewとの関連付けはbelongs_toであること" do
       expect(association.macro).to eq :belongs_to
@@ -22,7 +22,7 @@ RSpec.describe Notification, type: :model do
   end
 
   context "visitorとのアソシエーション" do
-    let (:target) { :visitor }
+    let(:target) { :visitor }
 
     it "Reviewとの関連付けはbelongs_toであること" do
       expect(association.macro).to eq :belongs_to
@@ -30,7 +30,7 @@ RSpec.describe Notification, type: :model do
   end
 
   context "visitedとのアソシエーション" do
-    let (:target) { :visited }
+    let(:target) { :visited }
 
     it "Reviewとの関連付けはbelongs_toであること" do
       expect(association.macro).to eq :belongs_to

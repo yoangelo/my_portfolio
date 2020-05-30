@@ -10,7 +10,7 @@ RSpec.describe ReviewImage, type: :model do
   end
 
   context "Reviewモデルとのアソシエーション" do
-    let (:target) { :review }
+    let(:target) { :review }
 
     it "Reviewとの関連付けはbelongs_toであること" do
       expect(association.macro).to eq :belongs_to

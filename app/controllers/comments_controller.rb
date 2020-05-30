@@ -22,6 +22,7 @@ class CommentsController < ApplicationController
   end
 
   private
+
   def comment_params
     params.permit(:body, :review_id)
   end

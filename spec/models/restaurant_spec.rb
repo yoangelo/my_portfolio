@@ -6,7 +6,6 @@ RSpec.describe Restaurant, type: :model do
   end
 
   context "Restaurantモデルのバリデーション" do
-
     it "店名がなければ無効な状態であること" do
       rest = FactoryBot.build(:restaurant, name: nil)
       rest.valid?
@@ -30,22 +29,21 @@ RSpec.describe Restaurant, type: :model do
   describe "各モデルとのアソシエーション" do
     before do
       @rest = FactoryBot.create(:restaurant)
-      user = User.create(email: "test@test", password: "password")
-      rev  = Review.create(user_id: user.id, restaurant_id: @rest.id, title: "Test_Title", body: "test_body")
     end
+
     let(:association) do
       described_class.reflect_on_association(target)
     end
 
     context "Reviewモデルとのアソシエーション" do
-      let (:target) { :reviews }
+      let(:target) { :reviews }
 
       it "Reviewとの関連付けはhas_manyであること" do
         expect(association.macro).to eq :has_many
       end
 
       it "Restaurantが削除されたらReviewも削除されること" do
-        expect{ @rest.destroy }.to change { Restaurant.count }.by(-1)
+        expect { @rest.destroy }.to change(Restaurant, :count).by(-1)
       end
     end
   end

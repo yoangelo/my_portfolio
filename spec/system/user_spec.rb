@@ -59,9 +59,7 @@ RSpec.describe 'Users', type: :system do
       OmniAuth.config.mock_auth[:twitter] = {
         "uid" => "123",
         "provider" => "twitter",
-        "info" => {
-          "nickname" => "anonymous"
-        }
+        "info" => { "nickname" => "anonymous" },
       }
       visit user_twitter_omniauth_authorize_path
     end
@@ -70,13 +68,14 @@ RSpec.describe 'Users', type: :system do
       before do
         visit root_path
       end
+
+      after do
+        OmniAuth.config.test_mode = false
+      end
+
       it "ログアウトが表示されておりログイン状態となっている" do
         expect(page).to have_content "ログアウト"
       end
-    end
-
-    after do
-      OmniAuth.config.test_mode = false
     end
   end
 end

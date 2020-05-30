@@ -1,11 +1,11 @@
 require "rails_helper"
 
 RSpec.describe "Comments", type: :system do
-  let (:current_user) { FactoryBot.create(:user) }
-  let (:other_user)   { FactoryBot.create(:user, email: "other_test@test.com", username: "other") }
-  let (:current_rest) { FactoryBot.create(:restaurant) }
-  let (:current_rev)  { FactoryBot.create(:review, restaurant_id: current_rest.id, user_id: current_user.id ) }
-  let (:current_com)  { FactoryBot.create(:comment, review_id: current_rev.id, user_id: current_user.id ) }
+  let(:current_user) { FactoryBot.create(:user) }
+  let(:other_user)   { FactoryBot.create(:user, email: "other_test@test.com", username: "other") }
+  let(:current_rest) { FactoryBot.create(:restaurant) }
+  let(:current_rev)  { FactoryBot.create(:review, restaurant_id: current_rest.id, user_id: current_user.id) }
+  let(:current_com)  { FactoryBot.create(:comment, review_id: current_rev.id, user_id: current_user.id) }
 
   describe "ユーザーがログインしているとき" do
     before do
@@ -15,7 +15,7 @@ RSpec.describe "Comments", type: :system do
     end
 
     describe "現在のユーザー=コメントユーザー" do
-      let (:login_user) { current_user }
+      let(:login_user) { current_user }
 
       it "コメント欄が表示されていること" do
         expect(page).to have_selector "textarea", id: "body"
@@ -32,18 +32,18 @@ RSpec.describe "Comments", type: :system do
         page.accept_confirm "このコメントを削除しますか？" do
           click_on "コメントを削除する"
         end
-        expect(page).to_not have_content "Test_body"
+        expect(page).not_to have_content "Test_body"
         expect(Comment.count).to eq 0
       end
     end
 
     describe "現在のユーザー≠コメントユーザー" do
-      let (:login_user) { other_user }
+      let(:login_user) { other_user }
 
-      it "削除することができないこと"  do
+      it "削除することができないこと" do
         expect(page).to have_selector "a", text: "anonymousさん"
         expect(page).to have_selector "textarea", id: "body"
-        expect(page).to_not have_content "コメントを削除する"
+        expect(page).not_to have_content "コメントを削除する"
       end
     end
   end
@@ -51,8 +51,8 @@ RSpec.describe "Comments", type: :system do
   describe "ユーザーがログインしていないとき" do
     it "コメント入力欄が表示されないこと" do
       visit restaurant_review_path(restaurant_id: current_rest.id, id: current_rev.id)
-      expect(page).to_not have_selector "textarea", id: "body"
-      expect(page).to_not have_selector "input", id: "comment_btn"
+      expect(page).not_to have_selector "textarea", id: "body"
+      expect(page).not_to have_selector "input", id: "comment_btn"
     end
   end
 end

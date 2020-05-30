@@ -25,7 +25,7 @@ RSpec.describe Comment, type: :model do
     end
 
     context "Userモデルとのアソシエーション" do
-      let (:target) { :user }
+      let(:target) { :user }
 
       it "Profileとの関連付けはbelongs_toであること" do
         expect(association.macro).to eq :belongs_to
@@ -33,7 +33,7 @@ RSpec.describe Comment, type: :model do
     end
 
     context "Reviewモデルとのアソシエーション" do
-      let (:target) { :review }
+      let(:target) { :review }
 
       it "Reviewとの関連付けはbelongs_toであること" do
         expect(association.macro).to eq :belongs_to
@@ -41,7 +41,7 @@ RSpec.describe Comment, type: :model do
     end
 
     context "Notificationモデルとのアソシエーション" do
-      let (:target) { :notifications }
+      let(:target) { :notifications }
 
       it "Notificationとの関連付けはhas_manyであること" do
         expect(association.macro).to eq :has_many
