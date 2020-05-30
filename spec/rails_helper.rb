@@ -6,7 +6,7 @@ require File.expand_path('../config/environment', __dir__)
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
-Capybara.server_host = Socket.ip_address_list.detect{|addr| addr.ipv4_private?}.ip_address
+Capybara.server_host = Socket.ip_address_list.detect { |addr| addr.ipv4_private? }.ip_address
 Capybara.server_port = 3000
 
 Capybara.register_driver :selenium_remote do |app|
