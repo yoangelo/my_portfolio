@@ -1,5 +1,4 @@
 module ApplicationHelper
-
   def full_title(page_title)
     base_title = "Child Restaurant(仮)"
     if page_title.blank?
