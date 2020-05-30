@@ -1,5 +1,7 @@
 inherit_from:
   - .rubocop_airbnb.yml
+LineLength:
+  Max: 200
 #検証除外フォルダ指定
 AllCops:
   Exclude:
@@ -12,3 +14,6 @@ AllCops:
     - 'config/credentials.yml.enc'
     - 'lib/tasks/*'
     - 'vendor/**/*'
+    - 'app/helpers/*'
+    - 'spec/rails_helper.rb'
+    - 'spec/support/*'
