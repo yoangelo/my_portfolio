@@ -36,7 +36,8 @@ jobs:
        steps:
            - checkout
            - add_ssh_keys:
-           - run: ssh ec2-user@18.177.212.209
+           - run: ping 18.177.212.209
+           # - run: ssh ec2-user@18.177.212.209
            # 'cd /var/www/rails/my_portfolio/ && git pull origin master'
 
 workflows:
