@@ -13,7 +13,7 @@ jobs:
           name: Dockerコンテナの起動
           command: docker-compose up -d
       - run:
-          name: sleep for waiting launch db
+          name: "10秒待機させる"
           command: sleep 10
       - run:
           name: データベースの作成
