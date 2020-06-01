@@ -19,21 +19,25 @@ RSpec.describe "Restaurants", type: :system do
         expect(page).to have_selector 'h1', text: "お店を検索する"
         expect(page).to have_selector 'input', id: "rest_search"
       end
-      # it "検索したキーワードと一致した店が一覧表示されること" do
-      #   fill_in "name", with: "マクドナルド"
-      #   find("input", id: "rest_search").click
-      #   sleep 3
-      #   expect(page).to have_selector 'li', text: "マクドナルド"
-      # end
-      # it "選択した店の新規レビュー投稿ページに遷移すること" do
-      #
-      # end
+
+      it "検索したキーワードと一致した店が一覧表示され、投稿ページにアクセスできること" do
+        fill_in "name", with: "マクドナルド"
+        find("input", id: "rest_search").click
+        expect(page).to have_selector 'li', text: "マクドナルド"
+        within first("li", id: "rest_list") do
+          find("input").choose
+        end
+        expect { click_button "登録する" }.to change(Restaurant, :count).by(1)
+        expect(page).to have_selector 'h1', text: "口コミを投稿する"
+      end
+
+      it "文字を入力しなおすと、一覧表示された店がクリアされること" do
+        fill_in "name", with: "マクドナルド"
+        find("input", id: "rest_search").click
+        expect(page).to have_selector 'li', text: "マクドナルド"
+        fill_in "name", with: ""
+        expect(page).not_to have_selector 'li', text: "マクドナルド"
+      end
     end
   end
-
-  # describe "ユーザーがログインしていないとき" do
-  #   it "レストラン検索ページが表示されずログインページにリダイレクトすること" do
-  #
-  #   end
-  # end
 end
