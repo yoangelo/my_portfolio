@@ -89,5 +89,8 @@ RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
   # ajaxの処理完了を待つためのヘルパーメソッド
   config.include WaitForAjax, type: :system
+  # ログイン動作のヘルパーメソッド
   config.include LoginTestUser, type: :system
+  # スクリーンショットを出力するヘルパーメソッド
+  config.include TakeScreenshot, type: :system
 end
