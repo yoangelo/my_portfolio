@@ -22,9 +22,10 @@ jobs:
           name: データベースのセットアップ
           command: docker-compose run web rails db:migrate RAILS_ENV=test
       - run:
-          name: テスト環境にアセットプリコンパイル実行
+          name: RSpecテスト実行
           command: |
             docker-compose run web bash
+            sleep 10
             rails assets:precompile RAILS_ENV=test
             bundle exec rspec
       - run:
