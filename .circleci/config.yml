@@ -23,11 +23,7 @@ jobs:
           command: docker-compose run web rails db:migrate RAILS_ENV=test
       - run:
           name: RSpecテスト実行
-          command: |
-            docker-compose run web bash
-            sleep 10
-            rails assets:precompile RAILS_ENV=test
-            bundle exec rspec
+          command: docker-compose run web bundle exec rspec
       - run:
           name: Rubocopテスト実行
           command: docker-compose run web bundle exec rubocop

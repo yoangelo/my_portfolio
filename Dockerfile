@@ -14,4 +14,6 @@ WORKDIR $APP_ROOT
 ADD ./Gemfile $APP_ROOT/Gemfile
 ADD ./Gemfile.lock $APP_ROOT/Gemfile.lock
 RUN bundle install
+RUN RAILS_ENV=test rails assets:precompile
+RUN RAILS_ENV=production rails assets:precompile
 ADD . $APP_ROOT
