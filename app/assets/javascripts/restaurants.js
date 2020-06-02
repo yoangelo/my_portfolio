@@ -1,4 +1,5 @@
 $(function() {
+  $('#rest_lists').append(`<li id="rest_list"><input type="radio" name="rest_name">マクドナルド</li>`)
   var rest =null;
   var cancelFlag = 0;
   $('#rest_search').on("click",function(e) {
