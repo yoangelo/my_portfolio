@@ -23,7 +23,7 @@ RSpec.describe "Restaurants", type: :system do
       it "検索したキーワードと一致した店が一覧表示され、投稿ページにアクセスできること" do
         fill_in "name", with: "マクドナルド"
         find("input", id: "rest_search").click
-        page.html
+        puts page.html
         within first("ul", id: "rest_lists") do
           expect(page).to have_selector 'li', text: "マクドナルド"
         end
