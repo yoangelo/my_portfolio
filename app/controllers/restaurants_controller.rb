@@ -4,6 +4,7 @@ class RestaurantsController < ApplicationController
 
   def new
     @restaurant = Restaurant.new
+    @user = User.last
     respond_to do |format|
       format.html
       format.json
