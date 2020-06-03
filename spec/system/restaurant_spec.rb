@@ -39,6 +39,7 @@ RSpec.describe "Restaurants", type: :system do
         expect(page).not_to have_selector 'li', text: "マクドナルド"
       end
     end
+
     describe "ユーザーがログインしていないとき", js: true do
       before do
         visit root_path
@@ -55,11 +56,10 @@ RSpec.describe "Restaurants", type: :system do
 
   describe "一覧表示の確認", js: true do
     before do
-      5.times do
-        FactoryBot.create(:some_restaurant)
-      end
+      create_list(:some_restaurant, 5)
       visit restaurants_path
     end
+
     it "レストラン一覧が表示され、レストラン名をクリックすると詳細ページにアクセスすること" do
       expect(page).to have_content "レストランその1"
       expect(page).to have_content "レストランその2"
@@ -70,12 +70,18 @@ RSpec.describe "Restaurants", type: :system do
   end
 
   describe "詳細表示の確認", js: true do
-    let(:test_rest) { FactoryBot.create(:restaurant, name:"aaa") }
-    let!(:test_rest_rev_1)  { FactoryBot.create(:review, restaurant_id: test_rest.id, user_id: current_user.id, title: "口コミその1") }
-    let!(:test_rest_rev_2)  { FactoryBot.create(:review, restaurant_id: test_rest.id, user_id: other_user.id, title: "口コミその2") }
+    let(:test_rest) { FactoryBot.create(:restaurant, name: "aaa") }
+    let!(:test_rest_rev_1) do
+      FactoryBot.create(:review, restaurant_id: test_rest.id, user_id: current_user.id, title: "口コミその1")
+    end
+    let!(:test_rest_rev_2) do
+      FactoryBot.create(:review, restaurant_id: test_rest.id, user_id: other_user.id, title: "口コミその2")
+    end
+
     before do
       visit restaurant_path(id: test_rest.id)
     end
+
     it "口コミ一覧が表示されていること" do
       expect(page).to have_content "口コミその1"
       expect(page).to have_content "口コミその2"

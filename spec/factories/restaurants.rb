@@ -8,14 +8,14 @@ FactoryBot.define do
   sequence :restaurant_id do |i|
     i
   end
-  factory :restaurant, class:"Restaurant" do
+  factory :restaurant, class: "Restaurant" do
     name { "test_restaurant" }
     address { "1-1-1" }
     tell { "000-000-0000" }
     genre { "TestGenre" }
     res_id { "0000000" }
   end
-  factory :some_restaurant, class:"Restaurant" do
+  factory :some_restaurant, class: "Restaurant" do
     name { generate :restaurant_name }
     address { "1-1-1" }
     tell { "000-000-0000" }
