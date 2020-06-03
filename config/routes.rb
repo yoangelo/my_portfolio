@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get "alltags", to: "static_pages#alltags"
   get "search", to: "reviews#search"
   root 'static_pages#home'
-  resources :restaurants, only: [:new, :create, :destroy] do
+  resources :restaurants, only: [:index, :show, :new, :create]  do
     resources :reviews do
       resources :comments
     end
