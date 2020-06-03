@@ -30,3 +30,4 @@
 .vscode
 /spec/examples.txt
 .DS_Store
+yarn.lock
