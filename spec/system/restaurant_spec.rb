@@ -20,34 +20,7 @@ RSpec.describe "Restaurants", type: :system do
         expect(page).to have_selector 'input', id: "rest_search"
       end
 
-      it "javascriptが効いている" do
-        take_screenshot
-        within first("ul", id: "rest_lists") do
-          expect(page).to have_selector 'li', text: "うふふ"
-        end
-        # within first("li", id: "rest_list") do
-        #   find("input").choose
-        # end
-        # click_button "登録する"
-        # expect(page).to have_selector 'h1', text: "口コミを投稿する"
-      end
-
-      it "クリックが効いている" do
-        fill_in "name", with: "マクドナルド"
-        find("input", id: "rest_search").click
-        puts page.html
-        within first("ul", id: "rest_lists") do
-          expect(page).to have_selector 'li', text: "わわわわー"
-        end
-        take_screenshot
-        # within first("li", id: "rest_list") do
-        #   find("input").choose
-        # end
-        # click_button "登録する"
-        # expect(page).to have_selector 'h1', text: "口コミを投稿する"
-      end
-
-      it "APIが効いている" do
+      it "検索したキーワードと一致した店が一覧表示され、投稿ページにアクセスできること" do
         fill_in "name", with: "マクドナルド"
         find("input", id: "rest_search").click
         puts page.html

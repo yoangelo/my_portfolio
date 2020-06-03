@@ -1,9 +1,7 @@
 $(function() {
-  $('#rest_lists').append(`<li id="rest_list"><input type="radio" name="rest_name">うふふ</li>`)
   var rest =null;
   var cancelFlag = 0;
   $('#rest_search').on("click",function(e) {
-    $('#rest_lists').append(`<li id="rest_list"><input type="radio" name="rest_name">わわわわー</li>`)
     // ページ移行を回避
     e.preventDefault();
     const requestUrl = 'https://api.gnavi.co.jp/RestSearchAPI/v3/';
