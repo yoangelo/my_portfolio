@@ -79,6 +79,7 @@ RSpec.describe "Restaurants", type: :system do
       visit root_path
       click_on "投稿する"
     end
+
     it "レストラン検索ページが表示されずログインページにリダイレクトすること" do
       expect(page).not_to have_selector 'h1', text: "お店を検索する"
       expect(page).to have_content "ログインしてください"
