@@ -2,6 +2,15 @@ class RestaurantsController < ApplicationController
   include AjaxHelper
   before_action :sign_in_required, only: [:new]
 
+  def index
+    @restaurants = Restaurant.all
+  end
+
+  def show
+    @restaurant = Restaurant.find(params[:id])
+    @reviews = @restaurant.reviews
+  end
+
   def new
     @restaurant = Restaurant.new
     @user = User.last
