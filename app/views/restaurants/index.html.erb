@@ -1,0 +1,17 @@
+<% provide(:title, "お店一覧")  %>
+<h1 class="text-center">
+  お店一覧
+</h1>
+<div class="row">
+  <%=link_to "お店を検索する",new_restaurant_path,class:"btn btn-primary"%>
+</div>
+<div class="row">
+  <% @restaurants.each do |restaurant| %>
+    <div class="col-md-8 rev-card">
+      <%= link_to restaurant_path(id: restaurant.id) do %>
+        <p class="rev-card-title"><%= restaurant.name %></p>
+      <% end %>
+      <br>
+    </div>
+  <% end %>
+</div>
