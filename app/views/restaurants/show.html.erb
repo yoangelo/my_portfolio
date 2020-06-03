@@ -1,0 +1,27 @@
+<% provide(:title, @restaurant.name)  %>
+<div class="row">
+  <div class="col-md-12 rev-card">
+    <h1><%= @restaurant.name %></h1>
+    <p>住所 : <%= @restaurant.address %></p>
+    <p>電話番号 : <%= @restaurant.tell %></p>
+  </div>
+</div>
+<div class="row">
+  <h2><%= @restaurant.name %>の口コミ一覧</h2>
+  <% @reviews.each do |review| %>
+    <div class="col-md-8 rev-card">
+      <%= link_to restaurant_review_path(restaurant_id: @restaurant.id, id: review.id) do %>
+        <p class="rev-card-title"><%= review.title %></p>
+        <p><%= review.created_at.strftime("%Y年%m月%d日") %></p>
+        <p>投稿者：<%= review.user.username %></p>
+        <% if review.review_images.present? %>
+          <% review.review_images.each do |image| %>
+            <%= attachment_image_tag image, :image, :fill, 200, 200 %>
+          <% end %>
+        <% end %>
+      <% end %>
+      <br>
+      <%= render "reviews/tag_list", tag_list: review.tag_list %>
+    </div>
+  <% end %>
+</div>
