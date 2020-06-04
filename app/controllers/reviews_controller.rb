@@ -6,12 +6,12 @@ class ReviewsController < ApplicationController
   # before_action :authenticate_user!
 
   def index
-    @reviews = @restaurant.reviews
+    @reviews = @restaurant.reviews.order(created_at: "DESC").page(params[:page]).per(3)
   end
 
   def show
     @comment = Comment.new
-    @comments = @review.comments
+    @comments = @review.comments.page(params[:page]).per(3)
   end
 
   def new
