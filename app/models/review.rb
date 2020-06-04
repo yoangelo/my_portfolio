@@ -1,6 +1,5 @@
 class Review < ApplicationRecord
   acts_as_taggable
-  scope :sorted, -> { order(created_at: :desc) }
   belongs_to :user
   belongs_to :restaurant
   validates :title, presence: true, length: { maximum: 50 }
