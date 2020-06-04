@@ -3,12 +3,12 @@ class RestaurantsController < ApplicationController
   before_action :sign_in_required, only: [:new]
 
   def index
-    @restaurants = Restaurant.all
+    @restaurants = Restaurant.page(params[:page]).per(10)
   end
 
   def show
     @restaurant = Restaurant.find(params[:id])
-    @reviews = @restaurant.reviews
+    @reviews = @restaurant.reviews.order(created_at: "DESC").page(params[:page]).per(3)
   end
 
   def new
