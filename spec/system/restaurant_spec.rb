@@ -21,6 +21,7 @@ RSpec.describe "Restaurants", type: :system do
         find("input", id: "rest_search").click
         within first("ul", id: "rest_lists") do
           expect(page).to have_selector 'li', text: "マクドナルド"
+          expect(page).to have_css 'img'
         end
         within first("li", id: "rest_list") do
           find("input").choose
@@ -82,7 +83,8 @@ RSpec.describe "Restaurants", type: :system do
       visit restaurant_path(id: test_rest.id)
     end
 
-    it "口コミ一覧が表示されていること" do
+    it "口コミ一覧が表示され、タイトルをクリックすると口コミの詳細ページにアクセスすること" do
+      expect(page).to have_css 'img'
       expect(page).to have_content "口コミその1"
       expect(page).to have_content "口コミその2"
       click_link "口コミその1"

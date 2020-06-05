@@ -14,6 +14,7 @@ FactoryBot.define do
     tell { "000-000-0000" }
     genre { "TestGenre" }
     res_id { "0000000" }
+    image_url_1 { "https://rimage.gnst.jp/rest/img/puf89e0e0000/t_0044.jpg" }
   end
   factory :some_restaurant, class: "Restaurant" do
     name { generate :restaurant_name }

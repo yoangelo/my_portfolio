@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_04_053310) do
+ActiveRecord::Schema.define(version: 2020_06_05_170352) do
 
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "body"
@@ -65,6 +65,8 @@ ActiveRecord::Schema.define(version: 2020_06_04_053310) do
     t.string "res_id"
     t.float "latitude"
     t.float "longitude"
+    t.text "image_url_1"
+    t.text "image_url_2"
   end
 
   create_table "review_images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
