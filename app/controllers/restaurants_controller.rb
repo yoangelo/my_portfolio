@@ -28,7 +28,9 @@ class RestaurantsController < ApplicationController
       res_id: params[:res_id],
       tell: params[:tell],
       latitude: params[:latitude],
-      longitude: params[:longitude]
+      longitude: params[:longitude],
+      image_url_1: params[:image_url_1],
+      image_url_2: params[:image_url_2]
     )
     if @restaurant.save
       puts "保存されました"
