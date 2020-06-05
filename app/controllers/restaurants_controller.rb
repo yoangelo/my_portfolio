@@ -3,7 +3,7 @@ class RestaurantsController < ApplicationController
   before_action :sign_in_required, only: [:new]
 
   def index
-    @restaurants = Restaurant.page(params[:page]).per(10)
+    @restaurants = Restaurant.order(created_at: "DESC").page(params[:page]).per(10)
   end
 
   def show
@@ -26,7 +26,9 @@ class RestaurantsController < ApplicationController
       name: params[:name],
       address: params[:address],
       res_id: params[:res_id],
-      tell: params[:tell]
+      tell: params[:tell],
+      latitude: params[:latitude],
+      longitude: params[:longitude]
     )
     if @restaurant.save
       puts "保存されました"
