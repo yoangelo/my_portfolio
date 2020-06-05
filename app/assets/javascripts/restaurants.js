@@ -43,7 +43,9 @@ $(function() {
         name: rest[checked_index].name,
         address: rest[checked_index].address,
         res_id: rest[checked_index].id,
-        tell: rest[checked_index].tel
+        tell: rest[checked_index].tel,
+        latitude: rest[checked_index].latitude,
+        longitude: rest[checked_index].longitude
       }
     }).done(function(data) {
     }).fail(function() {
