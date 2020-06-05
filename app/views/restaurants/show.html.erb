@@ -3,6 +3,8 @@
   <div class="col-md-12 rev-card">
     <h1><%= @restaurant.name %></h1>
     <div id="map"></div>
+    <img src="<%= @restaurant.image_url_1 %>" alt="">
+    <img src="<%= @restaurant.image_url_2 %>" alt="">
     <p>住所 : <%= @restaurant.address %></p>
     <p>電話番号 : <%= @restaurant.tell %></p>
     <%=link_to "このお店の口コミを投稿する", new_restaurant_review_path(restaurant_id: @restaurant.id),class:"btn btn-primary"%>
