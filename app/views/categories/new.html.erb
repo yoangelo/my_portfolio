@@ -1,0 +1,14 @@
+<h1>カテゴリー追加</h1>
+<%= form_with model: @category, local: true do |f| %>
+  <div class="form-group">
+    <%= f.label :name, "カテゴリー名"  %>
+    <%= f.text_field :name, class:"form-control" %>
+  </div>
+  <%= f.submit "投稿", class:"btn btn-primary" %>
+<% end %>
+<h1>カテゴリー一覧</h1>
+<% @categories.each do |category| %>
+  <span class="badge badge-info mr-1 p-2">
+    <%= link_to category.name, category_path(id: category.id), method: :delete, class: "text-white"  %>
+  </span>
+<% end %>
