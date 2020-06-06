@@ -14,6 +14,13 @@
     <% end %>
     <br>
     <%= render "reviews/tag_list", tag_list: @review.tag_list %>
+    <br>
+    <span>カテゴリ:</span>
+    <% @review.categories.each do |category| %>
+      <span class="badge badge-info mr-1 p-2">
+        <%= link_to category.name, category_path(id: category.id), class: "text-white"  %>
+      </span>
+    <% end %>
   </div>
 </div>
 <div class="row">

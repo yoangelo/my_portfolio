@@ -17,6 +17,17 @@
       <i class="fa fa-camera"></i>写真を投稿
     </div>
   </div>
+  <div class="form-group">
+    <%= f.label :category, 'カテゴリ' %>
+    <!-- 第1引数(category_ids):reviewのプロパティ名、第2引数:categoryの配列を取得、第3引数:checkboxのvalue値、第4引数:チェックボックスのラベル名 -->
+    <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) do |category| %>
+      <%= category.label do %>
+        <%= category.check_box %>
+        <%= category.text %>
+      <% end %>
+    <% end %>
+  </div>
+
   <%= f.attachment_field :review_images_images, multiple: true, class:"btn-flat-simple"%>
   <%= f.submit "投稿",class:"btn btn-primary" %>
 <% end %>
