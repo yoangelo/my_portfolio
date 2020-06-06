@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_05_170352) do
+ActiveRecord::Schema.define(version: 2020_06_06_124449) do
+
+  create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "body"
@@ -67,6 +73,13 @@ ActiveRecord::Schema.define(version: 2020_06_05_170352) do
     t.float "longitude"
     t.text "image_url_1"
     t.text "image_url_2"
+  end
+
+  create_table "review_category_relations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "review_id"
+    t.integer "category_id"
   end
 
   create_table "review_images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
