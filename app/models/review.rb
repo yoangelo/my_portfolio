@@ -10,6 +10,9 @@ class Review < ApplicationRecord
   has_many :comments, dependent: :destroy
   accepts_attachments_for :review_images, attachment: :image
   has_many :notifications, dependent: :destroy
+  has_many :review_category_relations
+  # 中間テーブルのreview_category_relationsを経由してcategoryモデルと関連付けをする
+  has_many :categories, through: :review_category_relations
 
   def like_rev(user)
     likes.create(user_id: user.id)
