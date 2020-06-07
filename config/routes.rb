@@ -16,4 +16,5 @@ Rails.application.routes.draw do
   end
   resources :likes, only: [:create, :destroy]
   resources :notifications, only: :index
+  resources :categories, only: [:index, :show, :new, :create, :destroy]
 end

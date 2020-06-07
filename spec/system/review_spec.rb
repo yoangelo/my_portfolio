@@ -16,18 +16,23 @@ RSpec.describe "Reviews", js: true, type: :system do
 
       describe "レビュー投稿" do
         before do
+          FactoryBot.create(:category, name: "hoge")
+          FactoryBot.create(:category, name: "fuga")
+          FactoryBot.create(:category, name: "piyo")
           visit new_restaurant_review_path(restaurant_id: current_rest.id)
         end
 
         it "投稿ページが表示されること" do
           expect(page).to have_selector 'h1', text: "口コミを投稿する"
           expect(page).to have_content "タグの入力"
+          expect(page).to have_content "hoge"
         end
 
         it "投稿できること" do
           fill_in "review_title", with: "test_review_title"
           fill_in "review_body", with: "test_review_body"
           fill_in "review_tag_list", with: "テスト,タグ"
+          check "fuga"
           attach_file "review_review_images_images", "spec/files/画像1.jpg"
           expect { click_button "投稿" }.to change(Review, :count).by(1)
           expect(page).to have_content "作成できました"
@@ -35,6 +40,7 @@ RSpec.describe "Reviews", js: true, type: :system do
           expect(page).to have_content "test_review_body"
           expect(page).to have_content "タグ"
           expect(page).to have_selector "img"
+          expect(page).to have_content "fuga"
         end
       end
 
