@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.describe Category, type: :model do
   it "有効なファクトリを持つこと" do
     expect(FactoryBot.build(:category)).to be_valid
-    expect(FactoryBot.build(:some_category)).to be_valid
   end
   describe "各モデルとのアソシエーション" do
     let(:association) do
