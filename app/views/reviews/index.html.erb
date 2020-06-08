@@ -11,7 +11,7 @@
       <%= link_to restaurant_review_path(id: review.id) do %>
         <p class="rev-card-title"><%= review.title %></p>
         <p><%= review.created_at.strftime("%Y年%m月%d日") %></p>
-        <p>投稿者：<%= review.user.username %></p>
+        <p>投稿者：<%= review.user.profile.name %></p>
         <% if review.review_images.present? %>
           <% review.review_images.each do |image| %>
             <%= attachment_image_tag image, :image, :fill, 200, 200 %>
