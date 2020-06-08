@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_06_124449) do
+ActiveRecord::Schema.define(version: 2020_06_07_171401) do
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -58,6 +58,10 @@ ActiveRecord::Schema.define(version: 2020_06_06_124449) do
     t.string "name", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "age"
+    t.string "liveplace"
+    t.string "children"
+    t.text "introduce"
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
