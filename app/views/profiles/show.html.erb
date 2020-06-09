@@ -1,5 +1,6 @@
 <h1><%= @profile.name %>さんのプロフィール</h1>
 <p>名前：<%= @profile.name %>さん</p>
+<%= render 'layouts/profile_image', profile: @profile %>
 <p>年齢：
   <% if @profile.age.present? %>
     <%= @profile.age %>

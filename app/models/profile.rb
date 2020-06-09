@@ -3,4 +3,5 @@ class Profile < ApplicationRecord
   validates :name, presence: true
   include JpPrefecture
   jp_prefecture :prefecture_code
+  has_one_attached :avatar
 end
