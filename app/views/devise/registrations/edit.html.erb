@@ -2,44 +2,44 @@
 <div class="col-md-12 rev-card">
   <h1 class="text-center">アカウント情報の編集</h1>
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+    <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="form-group">
-    <%= f.label :username,"ユーザー名" %><br />
-    <%= f.text_field :username, class:"form-control" %>
-  </div>
+    <!-- <div class="form-group">
+      <%= f.label :username,"ユーザー名" %><br />
+      <%= f.text_field :username, class:"form-control" %>
+    </div> -->
 
-  <div class="form-group">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control" %>
-  </div>
+    <div class="form-group">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control" %>
+    </div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-  <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="form-group">
-    <%= f.label :password %> <i>(変更しない場合は空白のまま)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password", class:"form-control" %>
-    <% if @minimum_password_length %>
-    <br />
-    <em><%= @minimum_password_length %> 文字以上で入力</em>
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
     <% end %>
-  </div>
 
-  <div class="form-group">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control" %>
-  </div>
+    <div class="form-group">
+      <%= f.label :password %> <i>(変更しない場合は空白のまま)</i><br />
+      <%= f.password_field :password, autocomplete: "new-password", class:"form-control" %>
+      <% if @minimum_password_length %>
+      <br />
+      <em><%= @minimum_password_length %> 文字以上で入力</em>
+      <% end %>
+    </div>
 
-  <div class="form-group">
-    <%= f.label :current_password %> <i>(変更するには以前のパスワードを入力してください)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password", class:"form-control" %>
-  </div>
+    <div class="form-group">
+      <%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control" %>
+    </div>
 
-  <div class="actions">
-    <%= f.submit "更新", class:"btn btn-success"%>
-  </div>
+    <div class="form-group">
+      <%= f.label :current_password %> <i>(変更するには以前のパスワードを入力してください)</i><br />
+      <%= f.password_field :current_password, autocomplete: "current-password", class:"form-control" %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "更新", class:"btn btn-success"%>
+    </div>
   <% end %>
 
   <h3>アカウントを削除する</h3>

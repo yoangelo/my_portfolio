@@ -2,6 +2,7 @@ require "rails_helper"
 
 RSpec.describe "Reviews", js: true, type: :system do
   let(:current_user) { FactoryBot.create(:user) }
+  let!(:current_profile) { FactoryBot.create(:profile, name: current_user.username, user_id: current_user.id) }
   let(:other_user)   { FactoryBot.create(:user, email: "other_test@test.com") }
   let(:current_rest) { FactoryBot.create(:restaurant) }
   let(:current_rev)  { FactoryBot.create(:review, restaurant_id: current_rest.id, user_id: current_user.id) }
@@ -33,7 +34,7 @@ RSpec.describe "Reviews", js: true, type: :system do
           fill_in "review_body", with: "test_review_body"
           fill_in "review_tag_list", with: "テスト,タグ"
           check "fuga"
-          attach_file "review_review_images_images", "spec/files/画像1.jpg"
+          attach_file "review_review_images_images", "spec/files/test_image1.jpg"
           expect { click_button "投稿" }.to change(Review, :count).by(1)
           expect(page).to have_content "作成できました"
           expect(page).to have_content "test_review_title"
@@ -70,7 +71,7 @@ RSpec.describe "Reviews", js: true, type: :system do
             fill_in "review_title", with: "TEST_edit"
             fill_in "review_body", with: "test_body_edit"
             fill_in "review_tag_list", with: "テスト,タグ,へんしゅう"
-            attach_file "review_review_images_images", "spec/files/画像2.jpg"
+            attach_file "review_review_images_images", "spec/files/test_image2.jpg"
             click_button "投稿"
             expect(page).to have_content "更新できました", "TEST_edit"
             expect(page).to have_content "test_body_edit"

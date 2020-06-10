@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe 'Users', type: :system do
+  let(:current_user) { FactoryBot.create(:user, email: "user_test@test.com") }
+  let!(:current_profile) { FactoryBot.create(:profile, name: current_user.username, user_id: current_user.id) }
+
   describe '新規登録機能' do
     before do
       ActionMailer::Base.deliveries.clear
@@ -52,7 +55,7 @@ RSpec.describe 'Users', type: :system do
     end
   end
 
-  describe "Twitterでのログインができること" do
+  describe "Twitterでのログインができること", js: true do
     before do
       OmniAuth.config.test_mode = true
       FactoryBot.create(:user)
@@ -64,18 +67,8 @@ RSpec.describe 'Users', type: :system do
       visit user_twitter_omniauth_authorize_path
     end
 
-    context "ログイン確認" do
-      before do
-        visit root_path
-      end
-
-      after do
-        OmniAuth.config.test_mode = false
-      end
-
-      it "ログアウトが表示されておりログイン状態となっている" do
-        expect(page).to have_content "ログアウト"
-      end
+    it "ログインできること" do
+      expect(page).to have_content "ログアウト"
     end
   end
 end

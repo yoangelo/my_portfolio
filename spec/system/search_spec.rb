@@ -2,6 +2,7 @@ require "rails_helper"
 
 RSpec.describe "Searchs", type: :system do
   let(:current_user) { FactoryBot.create(:user) }
+  let!(:current_profile) { FactoryBot.create(:profile, name: current_user.username, user_id: current_user.id) }
   let(:current_rest) { FactoryBot.create(:restaurant) }
 
   describe "検索機能" do

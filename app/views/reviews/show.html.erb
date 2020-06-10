@@ -5,7 +5,12 @@
     <h1><%= @review.title %></h1>
     <h2><%= link_to "#{@restaurant.name}", restaurant_path(id: @restaurant.id) %>の口コミ</h2>
     <p><%= @review.created_at.strftime("%Y年%m月%d日") %></p>
-    <p>投稿者:<%= @review.user.username %></p>
+    <p>投稿者:
+      <%= link_to profile_path(id: @review.user.id) do %>
+        <%= render 'layouts/profile_icon', profile: @review.user.profile %>
+        <%= @review.user.profile.name %>
+      <% end %>
+    </p>
     <p><%= safe_join(@review.body.split("\n"), tag(:br)) %></p>
     <% if @review.review_images.present? %>
       <% @review.review_images.each do |image| %>

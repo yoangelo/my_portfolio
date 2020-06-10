@@ -1,5 +1,4 @@
 module LoginTestUser
-  # ajaxが完了するまで待つ
   def login_test_user(which_user)
     visit root_path
     find("li", text: "ログイン").click

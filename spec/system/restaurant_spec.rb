@@ -1,8 +1,10 @@
 require "rails_helper"
 
 RSpec.describe "Restaurants", type: :system do
-  let(:current_user) { FactoryBot.create(:user) }
-  let(:other_user)   { FactoryBot.create(:user, email: "other_test@test.com") }
+  let!(:current_user) { FactoryBot.create(:user) }
+  let!(:current_profile) { FactoryBot.create(:profile, name: current_user.username, user_id: current_user.id) }
+  let!(:other_user) { FactoryBot.create(:user, email: "other_test@test.com") }
+  let!(:other_profile) { FactoryBot.create(:profile, name: other_user.username, user_id: other_user.id) }
 
   describe "レストラン検索機能" do
     describe "ユーザーがログインしているとき", js: true do
@@ -27,7 +29,9 @@ RSpec.describe "Restaurants", type: :system do
           find("input").choose
         end
         click_button "登録する"
-        expect(page).to have_selector 'h1', text: "口コミを投稿する"
+        within ".rev-card" do
+          expect(page).to have_content "口コミを投稿する"
+        end
       end
 
       it "文字を入力しなおすと、一覧表示された店がクリアされること" do

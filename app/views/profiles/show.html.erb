@@ -1,0 +1,34 @@
+<h1><%= @profile.name %>さんのプロフィール</h1>
+<p>名前：<%= @profile.name %>さん</p>
+<%= render 'layouts/profile_image', profile: @profile %>
+<p>年齢：
+  <% if @profile.age.present? %>
+    <%= @profile.age %>
+  <% else %>
+    未登録
+  <% end %>
+</p>
+<p>住まい：
+  <% if @profile.liveplace.present? %>
+    <%= @profile.liveplace %>
+  <% else %>
+    未登録
+  <% end %>
+</p>
+<p>子どもの人数：
+  <% if @profile.children.present? %>
+    <%= @profile.children %>
+  <% else %>
+    未登録
+  <% end %>
+</p>
+<p>自己紹介：
+  <% if @profile.introduce.present? %>
+    <%= @profile.introduce %>
+  <% else %>
+    まだ書かれていません
+  <% end %>
+</p>
+<% if @profile.user == current_user %>
+  <%=link_to "編集する", edit_profile_path(id: @profile.id), class:"btn btn-success"%>
+<% end %>

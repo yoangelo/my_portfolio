@@ -52,6 +52,8 @@ gem "dotenv-rails"
 gem "acts-as-taggable-on", "~> 6.0"
 gem "http"
 gem "geocoder"
+gem "jp_prefecture"
+gem "aws-sdk-s3", require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

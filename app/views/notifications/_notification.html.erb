@@ -4,7 +4,11 @@
   <div class="form-inline">
     <span>
       <i class="fa fa-home"></i>
-      <%= visitor.username %>さんが
+      <%= link_to profile_path(id: visitor.id) do %>
+        <%= render 'layouts/profile_icon', profile: visitor.profile %>
+        <%= visitor.profile.name %>
+      <% end %>
+      さんが
       <% case notification.action %>
         <% when 'like' then %>
           <%= link_to 'あなたの投稿', restaurant_review_path(
