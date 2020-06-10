@@ -28,6 +28,7 @@ RSpec.describe 'Profile', type: :system do
 
   describe "ユーザーがログインしているとき" do
     let(:login_user) { current_user }
+
     before do
       login_test_user(login_user)
     end
