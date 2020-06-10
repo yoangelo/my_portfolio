@@ -3,7 +3,8 @@ require "rails_helper"
 RSpec.describe "Reviews", js: true, type: :system do
   let(:current_user) { FactoryBot.create(:user) }
   let!(:current_profile) { FactoryBot.create(:profile, name: current_user.username, user_id: current_user.id) }
-  let(:other_user)   { FactoryBot.create(:user, email: "other_test@test.com") }
+  let(:other_user) { FactoryBot.create(:user, email: "other_test@test.com") }
+  let!(:other_profile) { FactoryBot.create(:profile, name: other_user.username, user_id: other_user.id) }
   let(:current_rest) { FactoryBot.create(:restaurant) }
   let(:current_rev)  { FactoryBot.create(:review, restaurant_id: current_rest.id, user_id: current_user.id) }
 
