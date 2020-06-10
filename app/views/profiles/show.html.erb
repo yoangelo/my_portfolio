@@ -32,3 +32,8 @@
 <% if @profile.user == current_user %>
   <%=link_to "編集する", edit_profile_path(id: @profile.id), class:"btn btn-success"%>
 <% end %>
+<div class="row">
+  <h2><%= @profile.name %>さんの口コミ一覧</h2>
+  <%= render "layouts/review_index", reviews: @reviews %>
+</div>
+<%= paginate @reviews %>

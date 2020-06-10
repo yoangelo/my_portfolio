@@ -3,6 +3,7 @@ class ProfilesController < ApplicationController
 
   def show
     @profile = Profile.find(params[:id])
+    @reviews = @profile.user.review.order(created_at: "DESC").page(params[:page]).per(3)
   end
 
   def edit
