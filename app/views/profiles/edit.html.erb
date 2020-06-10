@@ -5,27 +5,27 @@
 
   <div class="form-group">
     <%= f.label :avatar, "アイコン画像" %><br />
-    <%= f.file_field :avatar, class:"form-control" %>
+    <%= f.file_field :avatar, class:"form-control", id: "edit_avatar" %>
   </div>
   <div class="form-group">
     <%= f.label :name, "ユーザー名" %><br />
-    <%= f.text_field :name, class:"form-control" %>
+    <%= f.text_field :name, class:"form-control", id: "edit_name" %>
   </div>
   <div class="form-group">
     <%= f.label :age, "年齢" %><br />
-    <%= f.select :age, [["20~24歳", "20~24歳"], ["25~29歳", "25~29歳"], ["30~34歳", "30~34歳"], ["35~39歳", "35~39歳"], ["40~44歳", "40~44歳"], ["45~49歳", "45~49歳"], ["50~54歳", "50~54歳"], ["55~59歳", "55~59歳"]], include_blank: "選択して下さい" %>
+    <%= f.select :age, [["20~24歳", "20~24歳"], ["25~29歳", "25~29歳"], ["30~34歳", "30~34歳"], ["35~39歳", "35~39歳"], ["40~44歳", "40~44歳"], ["45~49歳", "45~49歳"], ["50~54歳", "50~54歳"], ["55~59歳", "55~59歳"]], include_blank: "年齢を選択して下さい", id: "edit_age" %>
   </div>
   <div class="form-group">
     <%= f.label :liveplace, "住まい" %><br />
-    <%= f.collection_select :liveplace, JpPrefecture::Prefecture.all, :name, :name %>
+    <%= f.collection_select :liveplace, JpPrefecture::Prefecture.all, :name, :name, id: "edit_liveplace" %>
   </div>
   <div class="form-group">
     <%= f.label :children, "子どもの数" %><br />
-    <%= f.select :children, [["1人", "1人"], ["2人", "2人"], ["3人", "3人"], ["4人", "4人"], ["5人以上", "5人以上"]], include_blank: "選択して下さい" %>
+    <%= f.select :children, [["1人", "1人"], ["2人", "2人"], ["3人", "3人"], ["4人", "4人"], ["5人以上", "5人以上"]], include_blank: "選択して下さい", id: "edit_children" %>
   </div>
   <div class="form-group">
     <%= f.label :introduce, "自己紹介" %><br />
-    <%= f.text_area :introduce, class:"form-control" %>
+    <%= f.text_area :introduce, class:"form-control", id: "edit_introduce" %>
   </div>
   <div class="actions">
     <%= f.submit "更新", class:"btn btn-success"%>
