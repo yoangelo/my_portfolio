@@ -22,7 +22,7 @@ $(function() {
           cancelFlag = 1;
           rest = data.rest
           rest.forEach(function(e){
-            $('#rest_lists').append(`<li id="rest_list"><input type="radio" name="rest_name">${e.name}<img src="${e.image_url.shop_image1}"><img src="${e.image_url.shop_image2}"></li>`)
+            $('#rest_lists').append(`<li id="rest_list"><input type="radio" name="rest_name">${e.name}<img src="${e.image_url.shop_image1}"><img src="${e.image_url.shop_image2}">${e.code.category_name_l[0]}<br>${e.code.prefname}</li>`)
           })
         }
       }
@@ -47,7 +47,9 @@ $(function() {
         latitude: rest[checked_index].latitude,
         longitude: rest[checked_index].longitude,
         image_url_1: rest[checked_index].image_url.shop_image1,
-        image_url_2: rest[checked_index].image_url.shop_image2
+        image_url_2: rest[checked_index].image_url.shop_image2,
+        genre: rest[checked_index].code.category_name_l[0],
+        prefecture: rest[checked_index].code.prefname
       }
     }).done(function(data) {
     }).fail(function() {
