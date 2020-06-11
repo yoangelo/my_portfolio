@@ -21,7 +21,6 @@ class RestaurantsController < ApplicationController
   end
 
   def create
-    puts params[:name]
     @restaurant = Restaurant.new(
       name: params[:name],
       address: params[:address],
@@ -32,6 +31,7 @@ class RestaurantsController < ApplicationController
       image_url_1: params[:image_url_1],
       image_url_2: params[:image_url_2],
       genre: params[:genre],
+      subgenre: params[:subgenre],
       prefecture: params[:prefecture]
     )
     if @restaurant.save
