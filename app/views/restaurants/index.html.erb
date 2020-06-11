@@ -17,7 +17,10 @@
         <% end %>
         <div class="card-body">
           <h4 class="card-title"><%= restaurant.name %></h4>
-          <p class="card-text">住所 : <%= restaurant.address %></p>
+          <span class="badge badge-success mr-1 mt-1 p-2">
+            <%= restaurant.prefecture %>
+          </span>
+          <p class="card-text"><%= render "genre", restaurant: restaurant %></p>
         </div>
       </div>
     </div>
