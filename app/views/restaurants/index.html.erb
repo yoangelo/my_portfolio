@@ -7,12 +7,23 @@
 </div>
 <div class="row">
   <% @restaurants.each do |restaurant| %>
-    <div class="col-md-8 rev-card">
-      <%= link_to restaurant_path(id: restaurant.id) do %>
-        <p class="rev-card-title"><%= restaurant.name %></p>
-      <% end %>
-      <br>
+    <%= link_to restaurant_path(id: restaurant.id) do %>
+    <div class=" col-lg-4">
+      <div class="card mt-5" style="width: 20rem;">
+        <% if restaurant.image_url_1.present? %>
+          <%= image_tag "#{restaurant.image_url_1}", class: "card-img-top", size: "300x300" %>
+        <% else %>
+          <%= image_tag "no_image.png", class: "card-img-top", size: "300x300"  %>
+        <% end %>
+        <div class="card-body">
+          <h4 class="card-title"><%= restaurant.name %></h4>
+          <p class="card-text">住所 : <%= restaurant.address %></p>
+        </div>
+      </div>
     </div>
+    <% end %>
   <% end %>
 </div>
-<%= paginate @restaurants %>
+<div class='kaminari_paginate'>
+  <%= paginate @restaurants %>
+</div>
