@@ -22,7 +22,25 @@ $(function() {
           cancelFlag = 1;
           rest = data.rest
           rest.forEach(function(e){
-            $('#rest_lists').append(`<li id="rest_list"><input type="radio" name="rest_name">${e.name}<img src="${e.image_url.shop_image1}"><img src="${e.image_url.shop_image2}">${e.code.category_name_l[0]}<br>${e.code.category_name_l[1]}<br>${e.code.prefname}</li>`)
+            $('#rest_lists').append(`
+              <div class="col-lg-4">
+                <div class="card mt-5" style="width: 20rem;">
+                  <img src="${e.image_url.shop_image1}" class="card-img-top" size="300x300">
+                  <div class="card-body">
+                    <h4 class="card-title">${e.name}</h4>
+                    <span class="badge badge-success mr-1 mt-1 p-2">
+                      ${e.code.prefname}
+                    </span>
+                    <p class="card-text">
+                      <span class="badge badge-warning mr-1 mt-1 p-2">
+                        ${e.code.category_name_l[0]}
+                      </span>
+                    </p>
+                    <input type="radio" name="rest_name" class="text-center">このお店の口コミを投稿する
+                  </div>
+                </div>
+              </div>
+            `)
           })
         }
       }
