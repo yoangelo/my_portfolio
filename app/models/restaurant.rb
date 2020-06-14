@@ -13,9 +13,7 @@ class Restaurant < ApplicationRecord
     return if search_params.blank?
 
     # パラメータを指定して検索を実行する
-    name_like(search_params[:name])
-      .prefecture_is(search_params[:prefecture])
-      .genre_is(search_params[:genre])
+    name_like(search_params[:name]).prefecture_is(search_params[:prefecture]).genre_is(search_params[:genre])
   end
   # nameが存在する場合、nameをlike検索する
   scope :name_like, -> (name) { where('name LIKE ?', "%#{name}%") if name.present? }
