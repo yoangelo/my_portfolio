@@ -3,16 +3,51 @@
   お店一覧
 </h1>
 <div class="row">
-  <%=link_to "お店を検索する",new_restaurant_path,class:"btn btn-primary"%>
+  <%=link_to "口コミ投稿する", new_restaurant_path, class:"btn btn-primary"%>
+</div>
+<div class="row">
+  <div class="search-form">
+    <%= form_with(scope: :search, url: restaurants_path, method: :get, local: true) do |f| %>
+    <div class="field">
+      <%= f.label(:name, "店名") %>
+      <%= f.text_field :name, value: @search_params[:name] %>
+    </div>
+  </div>
+  <div class="field">
+    <%= f.label(:prefecture, "都道府県") %>
+    <%= f.select(:prefecture, @prefectures, include_blank: "都道府県を選択して下さい") %>
+  </div>
+  <div class="field">
+    <%= f.label(:genre, "ジャンル") %>
+    <%= f.select(:genre, @genres, include_blank: "ジャンルを選択して下さい") %>
+  </div>
+  <div class="actions">
+    <%= submit_tag '検索', name: nil, class: "btn btn-outline-success my-2 my-sm-0" %>
+  </div>
+  <% end %>
 </div>
 <div class="row">
   <% @restaurants.each do |restaurant| %>
-    <div class="col-md-8 rev-card">
-      <%= link_to restaurant_path(id: restaurant.id) do %>
-        <p class="rev-card-title"><%= restaurant.name %></p>
-      <% end %>
-      <br>
+    <%= link_to restaurant_path(id: restaurant.id) do %>
+    <div class=" col-lg-4">
+      <div class="card mt-5" style="width: 20rem;">
+        <% if restaurant.image_url_1.present? %>
+          <%= image_tag "#{restaurant.image_url_1}", class: "card-img-top", size: "300x300" %>
+        <% else %>
+          <%= image_tag "no_image.png", class: "card-img-top", size: "300x300"  %>
+        <% end %>
+        <div class="card-body">
+          <h4 class="card-title"><%= restaurant.name %></h4>
+          <span class="badge badge-success mr-1 mt-1 p-2">
+            <%= restaurant.prefecture %>
+          </span>
+          <p class="card-text"><%= render "genre", restaurant: restaurant %></p>
+        </div>
+      </div>
     </div>
+    <% end %>
   <% end %>
 </div>
-<%= paginate @restaurants %>
+<div class='kaminari_paginate'>
+  <%= paginate @restaurants %>
+</div>
