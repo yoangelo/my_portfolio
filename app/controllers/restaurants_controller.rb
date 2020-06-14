@@ -3,7 +3,12 @@ class RestaurantsController < ApplicationController
   before_action :sign_in_required, only: [:new]
 
   def index
-    @restaurants = Restaurant.order(created_at: "DESC").page(params[:page]).per(6)
+    @search_params = restaurant_search_params
+    @restaurants = Restaurant.search(@search_params).order(created_at: "DESC").page(params[:page]).per(6)
+    all_genre = Restaurant.pluck(:genre) + Restaurant.pluck(:subgenre)
+    @genres = all_genre.uniq.reject(&:blank?)
+    all_prefecture = Restaurant.pluck(:prefecture)
+    @prefectures = all_prefecture.uniq.reject(&:blank?)
   end
 
   def show
@@ -50,5 +55,11 @@ class RestaurantsController < ApplicationController
         end
       end
     end
+  end
+
+  private
+
+  def restaurant_search_params
+    params.fetch(:search, {}).permit(:name, :prefecture, :genre)
   end
 end
