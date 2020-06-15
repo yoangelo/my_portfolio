@@ -21,15 +21,14 @@ RSpec.describe "Restaurants", type: :system do
       it "検索したキーワードと一致した店が一覧表示され、投稿ページにアクセスできること" do
         fill_in "name", with: "マクドナルド"
         find("input", id: "rest_search").click
-        within first("ul", id: "rest_lists") do
-          expect(page).to have_selector 'li', text: "マクドナルド"
-          expect(page).to have_css 'img'
+        within first("div", class: "card-body") do
+          expect(page).to have_selector 'h4', text: "マクドナルド"
         end
-        within first("li", id: "rest_list") do
-          find("input").choose
+        expect(page).to have_css 'img'
+        within first("div", class: "card-body") do
+          click_button "登録する"
         end
-        click_button "登録する"
-        within ".rev-card" do
+        within all(".rev-card")[1] do
           expect(page).to have_content "口コミを投稿する"
         end
       end
@@ -37,11 +36,11 @@ RSpec.describe "Restaurants", type: :system do
       it "文字を入力しなおすと、一覧表示された店がクリアされること" do
         fill_in "name", with: "マクドナルド"
         find("input", id: "rest_search").click
-        within first("ul", id: "rest_lists") do
-          expect(page).to have_selector 'li', text: "マクドナルド"
+        within first("div", class: "card-body") do
+          expect(page).to have_selector 'h4', text: "マクドナルド"
         end
         fill_in "name", with: ""
-        expect(page).not_to have_selector 'li', text: "マクドナルド"
+        expect(page).not_to have_selector 'h4', text: "マクドナルド"
       end
     end
 

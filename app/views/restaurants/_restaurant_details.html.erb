@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col-md-12 rev-card">
+    <h1>
+      <%=link_to restaurant.name, restaurant_path(id: restaurant.id)%>
+    </h1>
+    <div id="map"></div>
+    <img src="<%= restaurant.image_url_1 %>" alt="">
+    <img src="<%= restaurant.image_url_2 %>" alt="">
+    <p>住所 : <%= restaurant.address %></p>
+    <p>電話番号 : <%= restaurant.tell %></p>
+    <p>ジャンル :
+      <%= render "restaurants/genre", restaurant: restaurant %>
+    </p>
+  </div>
+</div>
+
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV["GOOGLEMAP_API_KEY"] %>&callback=initMap">
+</script>
+<script type="text/javascript">
+  function initMap() {
+    var test = { lat: <%= restaurant.latitude %>, lng: <%= restaurant.longitude %> };
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 15,
+      center: test
+    });
+    var transitLayer = new google.maps.TransitLayer();
+    transitLayer.setMap(map);
+
+    var contentString = "住所：<%= restaurant.address %>";
+    var infowindow = new google.maps.InfoWindow({
+      content: contentString
+    });
+
+    var marker = new google.maps.Marker({
+      position:test,
+      map: map,
+      title: contentString
+    });
+    console.log(marker)
+    marker.addListener('click', function() {
+      infowindow.open(map, marker);
+    });
+  }
+</script>

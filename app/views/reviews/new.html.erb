@@ -1,6 +1,7 @@
 <% provide(:title, "口コミ投稿")  %>
+<%= render "restaurants/restaurant_details", restaurant: @restaurant %>
 <div class="col-md-12 rev-card">
-  <h1 class="text-center">口コミを投稿する</h1>
+  <h1 class="text-center"><%= @restaurant.name %>の口コミを投稿する</h1>
   <%= render "error_messages" %>
   <%= render "form", review: @review%>
 </div>
