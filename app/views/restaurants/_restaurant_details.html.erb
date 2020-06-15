@@ -1,15 +1,16 @@
 <div class="row">
   <div class="col-md-12 rev-card">
-    <h1><%= @restaurant.name %></h1>
+    <h1>
+      <%=link_to restaurant.name, restaurant_path(id: restaurant.id)%>
+    </h1>
     <div id="map"></div>
-    <img src="<%= @restaurant.image_url_1 %>" alt="">
-    <img src="<%= @restaurant.image_url_2 %>" alt="">
-    <p>住所 : <%= @restaurant.address %></p>
-    <p>電話番号 : <%= @restaurant.tell %></p>
+    <img src="<%= restaurant.image_url_1 %>" alt="">
+    <img src="<%= restaurant.image_url_2 %>" alt="">
+    <p>住所 : <%= restaurant.address %></p>
+    <p>電話番号 : <%= restaurant.tell %></p>
     <p>ジャンル :
-      <%= render "genre", restaurant: @restaurant %>
+      <%= render "restaurants/genre", restaurant: restaurant %>
     </p>
-    <%=link_to "このお店の口コミを投稿する", new_restaurant_review_path(restaurant_id: @restaurant.id),class:"btn btn-primary"%>
   </div>
 </div>
 
@@ -18,7 +19,7 @@ src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV["GOOGLEMAP_API_
 </script>
 <script type="text/javascript">
   function initMap() {
-    var test = { lat: <%= @restaurant.latitude %>, lng: <%= @restaurant.longitude %> };
+    var test = { lat: <%= restaurant.latitude %>, lng: <%= restaurant.longitude %> };
     var map = new google.maps.Map(document.getElementById('map'), {
       zoom: 15,
       center: test
@@ -26,7 +27,7 @@ src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV["GOOGLEMAP_API_
     var transitLayer = new google.maps.TransitLayer();
     transitLayer.setMap(map);
 
-    var contentString = "住所：<%= @restaurant.address %>";
+    var contentString = "住所：<%= restaurant.address %>";
     var infowindow = new google.maps.InfoWindow({
       content: contentString
     });
