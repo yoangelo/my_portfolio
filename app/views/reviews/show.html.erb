@@ -1,6 +1,6 @@
 <% provide(:title, @review.title)  %>
+<%= render "restaurants/restaurant_details", restaurant: @restaurant %>
 <div class="row">
-  <%=link_to "お店のページに戻る", restaurant_path(id: @restaurant.id),class:"btn btn-primary"%>
   <div class="col-md-12 rev-card">
     <h1><%= @review.title %></h1>
     <h2><%= link_to "#{@restaurant.name}", restaurant_path(id: @restaurant.id) %>の口コミ</h2>
