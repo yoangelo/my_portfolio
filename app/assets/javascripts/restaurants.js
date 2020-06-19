@@ -69,7 +69,8 @@ $(function() {
         image_url_2: rest[post_index].image_url.shop_image2,
         genre: rest[post_index].code.category_name_l[0],
         subgenre: rest[post_index].code.category_name_l[1],
-        prefecture: rest[post_index].code.prefname
+        prefecture: rest[post_index].code.prefname,
+        opentime: rest[post_index].opentime
       }
     }).done(function(data) {
     }).fail(function() {
