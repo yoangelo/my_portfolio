@@ -1,16 +1,24 @@
 <div class="row">
-  <div class="col-md-12 rev-card">
-    <h1>
-      <%=link_to restaurant.name, restaurant_path(id: restaurant.id)%>
-    </h1>
-    <div id="map"></div>
-    <img src="<%= restaurant.image_url_1 %>" alt="">
-    <img src="<%= restaurant.image_url_2 %>" alt="">
-    <p>住所 : <%= restaurant.address %></p>
-    <p>電話番号 : <%= restaurant.tell %></p>
-    <p>ジャンル :
-      <%= render "restaurants/genre", restaurant: restaurant %>
-    </p>
+  <div class="rev-card col-12">
+    <div class="row">
+    <div class="col-12">
+      <h1 class="title-h1">
+        <%=link_to restaurant.name, restaurant_path(id: restaurant.id)%>
+      </h1>
+      <div id="map"></div>
+    </div>
+    <div class="col-sm-6">
+      <%= render "restaurants/restaurant_photo_slide", restaurant: restaurant %>
+    </div>
+    <div class="col-sm-6">
+      <p><i class="fa fa-home" aria-hidden="true"></i> <%= restaurant.address %></p>
+      <p><i class="fa fa-phone" aria-hidden="true"></i> <%= restaurant.tell %></p>
+      <% if restaurant.opentime.present? %>
+        <p><i class="fa fa-clock-o" aria-hidden="true"></i> <%= restaurant.opentime %></p>
+      <% end %>
+      <p><%= render "restaurants/genre", restaurant: restaurant %></p>
+    </div>
+  </div>
   </div>
 </div>
 

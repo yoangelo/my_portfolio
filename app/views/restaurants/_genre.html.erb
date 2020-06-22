@@ -1,16 +1,16 @@
 <% if restaurant.genre == restaurant.subgenre %>
-<span class="badge badge-warning mr-1 mt-1 p-2">
-  <%= restaurant.genre %>
-</span>
+  <span class="badge badge-warning mr-1 mt-1 p-2">
+    <%= restaurant.genre %>
+  </span>
 <% elsif restaurant.subgenre.blank? %>
-<span class="badge badge-warning mr-1 mt-1 p-2">
-  <%= restaurant.genre %>
-</span>
+  <span class="badge badge-warning mr-1 mt-1 p-2">
+    <%= restaurant.genre %>
+  </span>
 <% else %>
-<span class="badge badge-warning mr-1 mt-1 p-2">
-  <%= restaurant.genre %>
-</span>
-<span class="badge badge-warning mr-1 mt-1 p-2">
-  <%= restaurant.subgenre %>
-</span>
+  <span class="badge badge-warning mr-1 mt-1 p-2">
+    <%= restaurant.genre %>
+  </span>
+  <span class="badge badge-warning mr-1 mt-1 p-2">
+    <%= restaurant.subgenre %>
+  </span>
 <% end %>

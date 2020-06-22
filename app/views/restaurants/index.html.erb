@@ -1,53 +1,53 @@
 <% provide(:title, "お店一覧")  %>
-<h1 class="text-center">
-  お店一覧
-</h1>
-<div class="row">
-  <%=link_to "口コミ投稿する", new_restaurant_path, class:"btn btn-primary"%>
-</div>
-<div class="row">
-  <div class="search-form">
-    <%= form_with(scope: :search, url: restaurants_path, method: :get, local: true) do |f| %>
-    <div class="field">
-      <%= f.label(:name, "店名") %>
-      <%= f.text_field :name, value: @search_params[:name] %>
+<div class="container">
+  <h1 class="title-h1">
+    登録されたお店一覧
+  </h1>
+  <div class="row">
+    <div class="cp_iptxt col-md-4">
+      <%= form_with(scope: :search, url: restaurants_path, method: :get, local: true) do |f| %>
+      <%= f.text_field :name, value: @search_params[:name], placeholder: "店名を検索してください" %>
+    </div>
+    <div class="cp_ipselect cp_sl04 col-md-4">
+      <%= f.select(:prefecture, @prefectures, include_blank: "都道府県を選択して下さい") %>
+    </div>
+    <div class="cp_ipselect cp_sl04 col-md-4">
+      <%= f.select(:genre, @genres, include_blank: "ジャンルを選択して下さい") %>
+    </div>
+    <div class="btn-search-area float-right">
+      <%= button_tag type: "submit", class: "btn btn-outline-success" do %>
+      <i class="fa fa-search" aria-hidden="true"></i>
+      検索
+      <% end %>
     </div>
   </div>
-  <div class="field">
-    <%= f.label(:prefecture, "都道府県") %>
-    <%= f.select(:prefecture, @prefectures, include_blank: "都道府県を選択して下さい") %>
-  </div>
-  <div class="field">
-    <%= f.label(:genre, "ジャンル") %>
-    <%= f.select(:genre, @genres, include_blank: "ジャンルを選択して下さい") %>
-  </div>
-  <div class="actions">
-    <%= submit_tag '検索', name: nil, class: "btn btn-outline-success my-2 my-sm-0" %>
-  </div>
   <% end %>
-</div>
-<div class="row">
-  <% @restaurants.each do |restaurant| %>
+  <div class="row">
+    <% @restaurants.each do |restaurant| %>
     <%= link_to restaurant_path(id: restaurant.id) do %>
     <div class=" col-lg-4">
       <div class="card mt-5" style="width: 20rem;">
         <% if restaurant.image_url_1.present? %>
-          <%= image_tag "#{restaurant.image_url_1}", class: "card-img-top", size: "300x300" %>
+        <%= image_tag "#{restaurant.image_url_1}", class: "card-img-top", size: "300x300" %>
         <% else %>
-          <%= image_tag "no_image.png", class: "card-img-top", size: "300x300"  %>
+        <%= image_tag "no_image.png", class: "card-img-top", size: "300x300"  %>
         <% end %>
-        <div class="card-body">
-          <h4 class="card-title"><%= restaurant.name %></h4>
+        <div class="card-body webkit-center">
+          <h4 class="title-h1"><%= restaurant.name %></h4>
           <span class="badge badge-success mr-1 mt-1 p-2">
             <%= restaurant.prefecture %>
           </span>
           <p class="card-text"><%= render "genre", restaurant: restaurant %></p>
+          <p class="rest-card-text">
+            <i class="fa fa-comments-o" aria-hidden="true"></i>
+            口コミ件数 <%= restaurant.reviews.count %> 件</p>
         </div>
       </div>
     </div>
     <% end %>
-  <% end %>
-</div>
-<div class='kaminari_paginate'>
-  <%= paginate @restaurants %>
+    <% end %>
+  </div>
+  <div class='kaminari_paginate'>
+    <%= paginate @restaurants %>
+  </div>
 </div>

@@ -1,11 +1,18 @@
-<% provide(:title, "編集：#{@review.title}")  %>
-<%= render "restaurants/restaurant_details", restaurant: @restaurant %>
-<div class="row">
-  <div class="col-md-12 rev-card">
-    <h1 class="text-center"><%= @restaurant.name %>の口コミを編集する</h1>
-    <%= render "form", review: @review%>
+<% provide(:title, "口コミの編集：#{@review.title}")  %>
+<div class="container">
+  <div class="row">
+    <%= link_to restaurant_review_path, class:"btn-back" do %>
+    <i class="fa fa-arrow-left" aria-hidden="true"></i> 戻る
+    <% end %>
   </div>
-</div>
-<div class="row">
-  <%=link_to "戻る",restaurant_review_path, class:"btn btn-primary"%>
+  <%= render "restaurants/restaurant_details", restaurant: @restaurant %>
+  <div class="row">
+    <div class="col-md-12 rev-card">
+      <div class="rev-card-title">
+        <i class="fa fa-pencil" aria-hidden="true"></i> 口コミを編集する
+      </div>
+      <%= render "error_messages", review: @review %>
+      <%= render "form", review: @review %>
+    </div>
+  </div>
 </div>

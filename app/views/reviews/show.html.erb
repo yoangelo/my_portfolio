@@ -1,53 +1,94 @@
 <% provide(:title, @review.title)  %>
-<%= render "restaurants/restaurant_details", restaurant: @restaurant %>
-<div class="row">
-  <div class="col-md-12 rev-card">
-    <h1><%= @review.title %></h1>
-    <h2><%= link_to "#{@restaurant.name}", restaurant_path(id: @restaurant.id) %>の口コミ</h2>
-    <p><%= @review.created_at.strftime("%Y年%m月%d日") %></p>
-    <p>投稿者:
-      <%= link_to profile_path(id: @review.user.id) do %>
-        <%= render 'layouts/profile_icon', profile: @review.user.profile %>
-        <%= @review.user.profile.name %>
-      <% end %>
-    </p>
-    <p><%= safe_join(@review.body.split("\n"), tag(:br)) %></p>
-    <% if @review.review_images.present? %>
-      <% @review.review_images.each do |image| %>
-        <%= attachment_image_tag image, :image, :fill, 200, 200 %>
-      <% end %>
-    <% end %>
-    <br>
-    <%= render "reviews/tag_list", tag_list: @review.tag_list %>
-    <br>
-    <span>カテゴリ:</span>
-    <% @review.categories.each do |category| %>
-      <span class="badge badge-info mr-1 p-2">
-        <%= link_to category.name, category_path(id: category.id), class: "text-white"  %>
-      </span>
-    <% end %>
-  </div>
-</div>
-<div class="row">
-  <%= render "likes/like", review: @review %>
-  <% if @review.user == current_user %>
-    <%=link_to "編集する",edit_restaurant_review_path, class:"btn btn-success"%>
-    <%=link_to "削除する",restaurant_review_path, method: :delete, class:"btn btn-danger", data: {confirm: "本当にこの投稿を削除しますか？" }%>
+<div class="container">
+  <%= link_to :back, class:"btn-back" do %>
+  <i class="fa fa-arrow-left" aria-hidden="true"></i> 戻る
   <% end %>
-</div>
-<div class="row">
-  <div class="col-sm">
-    <h4>コメント</h4>
-    <div id="comments_area"><!-- #① -->
+
+  <div class="rev-card row">
+    <h1 class="col-12"><%= @review.title %></h1>
+    <!-- レビューに画像が添付されているか確認 -->
+    <% if @review.review_images.present? %>
+    <!-- 画像が添付されている場合、画像と本文を分割表示 -->
+    <!-- 画像スライド -->
+    <div class="col-sm-12 col-md-6 col-lg-4">
+      <%= render "photo_slide", review: @review %>
+      <br>
+    </div>
+    <!-- タグと投稿者と本文 -->
+    <div class="col-sm-12 col-md-6 col-lg-8">
+      <div class="mt-4">
+        <%= render "reviews/tag_list", tag_list: @review.tag_list %>
+        <%= link_to profile_path(id: @review.user.profile.id) do %>
+        <%= render 'layouts/profile_icon', profile: @review.user.profile %>
+        <%= @review.user.profile.name %>さん
+        <% end %>
+        <p><%= safe_join(@review.body.split("\n"), tag(:br)) %></p>
+      </div>
+    </div>
+    <% else %>
+    <!-- 画像が添付されていない場合、本文を全表示 -->
+    <div class="col-12">
+      <div class="mt-4">
+        <%= render "reviews/tag_list", tag_list: @review.tag_list %>
+        <%= link_to profile_path(id: @review.user.profile.id) do %>
+        <%= render 'layouts/profile_icon', profile: @review.user.profile %>
+        <%= @review.user.profile.name %>さん
+        <% end %>
+        <p><%= safe_join(@review.body.split("\n"), tag(:br)) %></p>
+      </div>
+    </div>
+    <% end %>
+    <!-- カテゴリー -->
+    <div class="col-8">
+      <div class="category-area">
+        <span class="category-area-title">
+          <i class="fa fa-check-square-o" aria-hidden="true"></i>
+          お子様連れに嬉しいポイント
+        </span>
+        <% @review.categories.each do |category| %>
+        <span class="badge badge-info m-1 p-2">
+          <%= link_to category_path(id: category.id), class: "text-white" do %>
+          <i class="fa fa-thumb-tack" aria-hidden="true"></i> <%= category.name %>
+          <% end %>
+        </span>
+        <% end %>
+      </div>
+    </div>
+    <!-- いいね -->
+    <div class="col-4 ">
+      <%= render "likes/like", review: @review %>
+    </div>
+    <!-- 投稿日 -->
+    <div class="post-date col-8">
+      <i class="fa fa-calendar" aria-hidden="true"></i> <%= @review.created_at.strftime("%Y年%m月%d日") %>
+    </div>
+    <!-- 編集・削除ボタン -->
+    <div class="col-4 mb-3 float-right">
+      <% if @review.user == current_user %>
+      <%=link_to edit_restaurant_review_path, class:"btn-edit m-1" do %>
+      <i class="fa fa-pencil-square-o" aria-hidden="true"></i> 編集する
+      <% end %>
+      <%=link_to restaurant_review_path, method: :delete, class:"btn-destory m-1",data: {confirm: "本当にこの投稿を削除しますか？" } do %>
+      <i class="fa fa-trash-o" aria-hidden="true"></i> 削除する
+      <% end %>
+      <% end %>
+    </div>
+  </div>
+  <!-- コメントエリア -->
+  <div class="row">
+    <div class="col-md-8">
       <!-- 投稿されたコメント一覧をレビューの詳細ページに表示するためのrender -->
       <%= render partial: 'comments/index', locals: { comments: @comments } %>
     </div>
     <%= paginate @comments %>
     <% if user_signed_in? %>
-      <!-- コメント入力欄をレビューの詳細ページに表示するためのrender -->
+    <!-- コメント入力欄をレビューの詳細ページに表示するためのrender -->
+    <div class="col-8">
       <div id="error_area">
         <%= render partial: 'comments/form', locals: { comment: @comment, review: @review } %>
       </div>
+    </div>
     <% end %>
   </div>
+  <%= render "restaurants/restaurant_details", restaurant: @restaurant %>
 </div>

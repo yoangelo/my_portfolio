@@ -1,24 +1,31 @@
-<h2><%= @restaurant.name %></h2>
 <%= form_with model: [@restaurant, @review], local: true do |f| %>
-  <div class="form-group">
-    <%= f.label :title,"タイトル"  %>
+  <div class="form-group mt-3">
+    <p class="label-font">
+      <i class="fa fa-flag" aria-hidden="true"></i>
+      タイトル
+    </p>
     <%= f.text_field :title, class:"form-control" %>
   </div>
   <div class="form-group">
-    <%= f.label :body,"本文"  %>
+    <p class="label-font">
+      <i class="fa fa-file-text-o" aria-hidden="true"></i>
+      本文
+    </p>
     <%= f.text_area :body, size: "20x10", class:"form-control" %>
   </div>
   <div class="form-group">
-    <%= f.label :tag_list,"タグの入力"  %>
+    <p class="label-font">
+      <i class="fa fa-tag" aria-hidden="true"></i>
+      タグの入力
+    </p>
     <%= f.text_field :tag_list, value: @review.tag_list.join(','), class:"form-control", placeholder: ",で区切ると複数登録できます。例:目黒,カフェ" %>
   </div>
-  <div class="form-group float-right relative" id="cover-image">
-    <div class="btn-flat-simple">
-      <i class="fa fa-camera"></i>写真を投稿
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :category, 'カテゴリ' %>
+  <div class="category-form">
+    <span class="category-form-title">
+      <i class="fa fa-check-square-o" aria-hidden="true"></i>
+      チェックポイント
+    </span>
+    <br>
     <!-- 第1引数(category_ids):reviewのプロパティ名、第2引数:categoryの配列を取得、第3引数:checkboxのvalue値、第4引数:チェックボックスのラベル名 -->
     <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) do |category| %>
       <%= category.label do %>
@@ -27,7 +34,16 @@
       <% end %>
     <% end %>
   </div>
-
+  <p class="label-font">
+    <i class="fa fa-camera" aria-hidden="true"></i>
+    写真を添付する
+  </p>
   <%= f.attachment_field :review_images_images, multiple: true, class:"btn-flat-simple"%>
-  <%= f.submit "投稿",class:"btn btn-primary" %>
+  <br>
+  <div class="text-center my-3 ">
+    <%= button_tag type: "submit", class: "btn-submit" do %>
+      <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+      投稿する
+    <% end %>
+  </div>
 <% end %>

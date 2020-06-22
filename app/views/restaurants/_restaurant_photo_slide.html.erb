@@ -1,0 +1,18 @@
+<div class="cp_cssslider_rest">
+  <%if restaurant.image_url_1.present? && restaurant.image_url_2.present? %>
+    <input type="radio" name="cp_switch_rest" id="rest_photo1" checked/>
+    <label for="rest_photo1">
+      <img src="<%= restaurant.image_url_1 %>"/>
+    </label>
+    <img src="<%= restaurant.image_url_1 %>"/>
+    <input type="radio" name="cp_switch_rest" id="rest_photo2" checked/>
+    <label for="rest_photo2">
+      <img src="<%= restaurant.image_url_2 %>"/>
+    </label>
+    <img src="<%= restaurant.image_url_2 %>"/>
+  <% elsif restaurant.image_url_1.present? %>
+    <img src="<%= restaurant.image_url_1 %>"/>
+  <% else %>
+    <%= image_tag("no_image.png") %>
+  <% end %>
+</div>

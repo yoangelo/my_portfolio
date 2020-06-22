@@ -1,5 +1,11 @@
-<% @reviews.each do |tag| %>
-  <span class="badge badge-primary mr-1 p-2">
-    <%= link_to tag.name, root_path(tag_name: tag.name), class: "text-white" %>
-  </span>
-<% end %>
+<div class="container">
+  <div class="rev-card py-3 px-2">
+    <h1 class="title-h1">タグ一覧</h1>
+    <p class="mt-4 text-center">口コミに登録された全てのタグです。クリックすると、タグを登録した口コミの一覧を確認することができます。</p>
+    <ul class="tag_card ml-3">
+      <% @reviews.each do |tag| %>
+      <li class="m-3"><%= link_to tag.name, root_path(tag_name: tag.name), class: "text-white" %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>

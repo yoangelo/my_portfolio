@@ -3,7 +3,6 @@
 <div class="col-md-6.mx-auto">
   <div class="form-inline">
     <span>
-      <i class="fa fa-home"></i>
       <%= link_to profile_path(id: visitor.id) do %>
         <%= render 'layouts/profile_icon', profile: visitor.profile %>
         <%= visitor.profile.name %>
