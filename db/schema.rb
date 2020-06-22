@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_11_173642) do
+ActiveRecord::Schema.define(version: 2020_06_19_062241) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -100,6 +100,7 @@ ActiveRecord::Schema.define(version: 2020_06_11_173642) do
     t.text "image_url_2"
     t.string "prefecture"
     t.string "subgenre"
+    t.string "opentime"
   end
 
   create_table "review_category_relations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

@@ -15,12 +15,12 @@ RSpec.describe "Restaurants", type: :system do
 
       it "レストラン検索ページが表示されること" do
         expect(page).to have_selector 'h1', text: "お店を検索する"
-        expect(page).to have_selector 'input', id: "rest_search"
+        expect(page).to have_selector 'button', id: "rest_search"
       end
 
       it "検索したキーワードと一致した店が一覧表示され、投稿ページにアクセスできること" do
         fill_in "name", with: "マクドナルド"
-        find("input", id: "rest_search").click
+        find("button", id: "rest_search").click
         within first("div", class: "card-body") do
           expect(page).to have_selector 'h4', text: "マクドナルド"
         end
@@ -28,14 +28,14 @@ RSpec.describe "Restaurants", type: :system do
         within first("div", class: "card-body") do
           click_button "登録する"
         end
-        within all(".rev-card")[1] do
+        within all(".nav-item")[2] do
           expect(page).to have_content "口コミを投稿する"
         end
       end
 
       it "文字を入力しなおすと、一覧表示された店がクリアされること" do
         fill_in "name", with: "マクドナルド"
-        find("input", id: "rest_search").click
+        find("button", id: "rest_search").click
         within first("div", class: "card-body") do
           expect(page).to have_selector 'h4', text: "マクドナルド"
         end
@@ -46,8 +46,7 @@ RSpec.describe "Restaurants", type: :system do
 
     describe "ユーザーがログインしていないとき", js: true do
       before do
-        visit root_path
-        click_on "投稿する"
+        visit new_restaurant_path
       end
 
       it "レストラン検索ページが表示されずログインページにリダイレクトすること" do
@@ -90,7 +89,9 @@ RSpec.describe "Restaurants", type: :system do
       expect(page).to have_css 'img'
       expect(page).to have_content "口コミその1"
       expect(page).to have_content "口コミその2"
-      click_link "口コミその1"
+      within first("#card-body") do
+        click_link "続きを見る"
+      end
       expect(current_path).to eq restaurant_review_path(restaurant_id: test_rest.id, id: test_rest_rev_1.id)
     end
   end

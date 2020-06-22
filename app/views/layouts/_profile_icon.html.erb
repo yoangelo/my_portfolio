@@ -1,5 +1,5 @@
 <% if profile.avatar.attached? %>
-  <%= link_to image_tag(profile.avatar.variant(combine_options:{resize:"50x50^",crop:"50x50+0+0",gravity: :center}).processed),profile %>
+  <%= image_tag(profile.avatar.variant(combine_options:{resize:"30x30^",crop:"30x30+0+0",gravity: :center}).processed, style: "border-radius: 4em;margin-bottom: 1px;") %>
 <% else %>
-  <%= link_to image_tag("default.jpg", :size =>'50x50'),profile %>
+  <%= image_tag("default.jpg", size: '30x30' , style: "border-radius: 4em;margin-bottom: 1px;") %>
 <% end %>

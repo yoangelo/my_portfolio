@@ -1,0 +1,9 @@
+<% if profile.errors.present? %>
+  <div id="error_explanation" class="alert alert-danger">
+    <ul>
+      <% profile.errors.full_messages.each do |message| %>
+        <li class="float-left"><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

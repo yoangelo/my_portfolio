@@ -39,12 +39,11 @@ RSpec.describe 'Profile', type: :system do
       end
 
       it "プロフィール画面が表示される" do
-        expect(page).to have_selector "h1", text: "テスト二郎さんのプロフィール"
         expect(page).to have_selector "img"
-        expect(page).to have_selector "p", text: "テスト二郎さん"
-        expect(page).to have_selector "p", text: "25~29歳"
-        expect(page).to have_selector "p", text: "和歌山県"
-        expect(page).to have_selector "p", text: "1人"
+        expect(page).to have_selector "span", text: "テスト二郎"
+        expect(page).to have_selector "span", text: "25~29歳"
+        expect(page).to have_selector "span", text: "和歌山県"
+        expect(page).to have_selector "span", text: "1人"
         expect(page).to have_selector "p", text: "よろしくお願いします"
       end
 
@@ -53,18 +52,17 @@ RSpec.describe 'Profile', type: :system do
         expect(current_path).to eq edit_profile_path(id: current_profile.id)
         attach_file "edit_avatar", "spec/files/test_image1.jpg"
         fill_in "edit_name", with: "テスト太郎"
-        select "30~34歳", from: "年齢"
-        select "東京都", from: "住まい"
-        select "2人", from: "子どもの数"
+        select "30~34歳", from: "profile_age"
+        select "東京都", from: "profile_liveplace"
+        select "2人", from: "profile_children"
         fill_in "edit_introduce", with: "こんにちはみなさん"
         click_on "更新"
         expect(current_path).to eq profile_path(id: current_profile.id)
-        expect(page).to have_selector "h1", text: "テスト太郎さんのプロフィール"
         expect(page).to have_selector "img[src$='test_image1.jpg']"
-        expect(page).to have_selector "p", text: "テスト太郎さん"
-        expect(page).to have_selector "p", text: "30~34歳"
-        expect(page).to have_selector "p", text: "東京都"
-        expect(page).to have_selector "p", text: "2人"
+        expect(page).to have_selector "span", text: "テスト太郎"
+        expect(page).to have_selector "span", text: "30~34歳"
+        expect(page).to have_selector "span", text: "東京都"
+        expect(page).to have_selector "span", text: "2人"
         expect(page).to have_selector "p", text: "こんにちはみなさん"
       end
     end
@@ -75,12 +73,11 @@ RSpec.describe 'Profile', type: :system do
       end
 
       it "プロフィール画面が表示されるが、編集できないこと" do
-        expect(page).to have_selector "h1", text: "テスト子さんのプロフィール"
         expect(page).to have_selector "img"
-        expect(page).to have_selector "p", text: "テスト子さん"
-        expect(page).to have_selector "p", text: "25~29歳"
-        expect(page).to have_selector "p", text: "和歌山県"
-        expect(page).to have_selector "p", text: "1人"
+        expect(page).to have_selector "span", text: "テスト子"
+        expect(page).to have_selector "span", text: "25~29歳"
+        expect(page).to have_selector "span", text: "和歌山県"
+        expect(page).to have_selector "span", text: "1人"
         expect(page).to have_selector "p", text: "よろしくお願いします"
         expect(page).not_to have_selector 'a', text: "編集する"
         visit edit_profile_path(id: other_profile.id)
@@ -96,12 +93,11 @@ RSpec.describe 'Profile', type: :system do
     end
 
     it "プロフィール画面が表示されるが、編集できないこと" do
-      expect(page).to have_selector "h1", text: "テスト子さんのプロフィール"
       expect(page).to have_selector "img"
-      expect(page).to have_selector "p", text: "テスト子さん"
-      expect(page).to have_selector "p", text: "25~29歳"
-      expect(page).to have_selector "p", text: "和歌山県"
-      expect(page).to have_selector "p", text: "1人"
+      expect(page).to have_selector "span", text: "テスト子"
+      expect(page).to have_selector "span", text: "25~29歳"
+      expect(page).to have_selector "span", text: "和歌山県"
+      expect(page).to have_selector "span", text: "1人"
       expect(page).to have_selector "p", text: "よろしくお願いします"
       expect(page).not_to have_selector 'a', text: "編集する"
       visit edit_profile_path(id: other_profile.id)

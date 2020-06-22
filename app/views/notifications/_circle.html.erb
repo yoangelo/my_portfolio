@@ -1,10 +1,10 @@
-<%= link_to(notifications_path) do %>
+<%= link_to(notifications_path, class: "dropdown-item") do %>
+通知
   <% if unchecked_notifications.any? %>
-    <span.fa-stack>
-      <i class="fa fa-bell fa-lg fa-stack-2x" style="font-size: 1.5em;"></i>
-      <i class="fa fa-circle n-circle fa-stack-1x"></i>
+    <span class="fa-stack">
+      <i class="fa fa-bell fa-lg fa-stack-2x notif-on"></i>
     </span>
   <% else %>
-    <i class="fa fa-bell fa-lg" style="font-size: 1.5em;"></i>
+      <i class="fa fa-bell fa-lg fa-stack-2x notif-off"></i>
   <% end %>
 <% end %>

@@ -1,0 +1,11 @@
+    <div class="cp_cssslider">
+      <% i = 1 %>
+      <% review.review_images.each do |image| %>
+        <input type="radio" name="cp_switch" id="photo<%=i%>" checked/>
+        <label for="photo<%=i%>">
+          <%= attachment_image_tag image, :image, :fill, 300, 225 %>
+        </label>
+        <%= attachment_image_tag image, :image, :fill, 300, 225 %>
+        <% i += 1 %>
+      <% end %>
+    </div>

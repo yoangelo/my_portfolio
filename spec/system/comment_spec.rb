@@ -25,14 +25,18 @@ RSpec.describe "Comments", type: :system do
 
       it "コメントができること", js: true do
         fill_in "body", with: "テストコメントです"
-        click_button "comment_btn"
-        expect(page).to have_content "テストコメントです"
+        click_button id: "btn-comment"
+        within "#comments_area" do
+          expect(page).to have_content "テストコメントです"
+        end
         expect(Comment.count).to eq 2
       end
 
       it "削除できること", js: true do
         page.accept_confirm "このコメントを削除しますか？" do
-          click_on "コメントを削除する"
+          within ".my-comment-user" do
+            find("#comment-destroy").click
+          end
         end
         expect(page).not_to have_content "Test_body"
         expect(Comment.count).to eq 0

@@ -1,29 +1,18 @@
-<h1 class="text-center">タイトル</h1>
-<div class="row">
-  <%=link_to "投稿する", new_restaurant_path, class:"btn btn-primary"%>
-</div>
-<div class="row">
-  <% @reviews.each do |review| %>
-    <div class="col-md-8 rev-card">
-      <%= link_to restaurant_review_path(restaurant_id: review.restaurant_id, id: review.id) do %>
-        <p class="rev-card-title"><%= review.title %></p>
-        <p><%= review.restaurant.name %></p>
-        <p><%= review.created_at.strftime("%Y年%m月%d日") %></p>
-        <p>投稿者：
-          <%= link_to profile_path(id: review.user.id) do %>
-            <%= render 'layouts/profile_icon', profile: review.user.profile %>
-            <%= review.user.profile.name %>
-          <% end %>
-        </p>
-        <% if review.review_images.present? %>
-          <% review.review_images.each do |image| %>
-            <%= attachment_image_tag image, :image, :fill, 200, 200 %>
-          <% end %>
-        <% end %>
-      <% end %>
-      <br>
-      <%= render "reviews/tag_list", tag_list: review.tag_list %>
-    </div>
+<div class="container">
+  <% if params[:search].present? %>
+    <% provide(:title, "「#{params[:search]}」の検索結果")  %>
   <% end %>
+  <div class="row">
+    <div class="col-md-12">
+      <% if @tagname.present? %>
+        <% provide(:title, "「#{@tagname}」タグを含む口コミ一覧") %>
+        <%= link_to :back, class:"btn-back" do %>
+          <i class="fa fa-arrow-left" aria-hidden="true"></i> 戻る
+        <% end %>
+        <h1 class="title-h1">「<%= @tagname%>」タグを含む口コミ一覧</h1>
+      <% end %>
+      <%= render "layouts/review_index", reviews: @reviews %>
+    </div>
+  </div>
+  <%= paginate @reviews %>
 </div>
-<%= paginate @reviews %>

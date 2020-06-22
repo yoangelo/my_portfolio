@@ -11,3 +11,5 @@ ja:
         body: コメント本文
       user:
         username: 名前(ニックネーム)
+      profile:
+        name: ユーザー名

@@ -1,7 +1,20 @@
 <% provide(:title, "お店を検索")  %>
-<h1 class="text-center">お店を検索する</h1>
-<div class="result"></div>
-<input type="hidden" value="<%= ENV["GURUNAVI_API_KEY"] %>" id="apikey">
-<input type="text" name="namae" id="name">
-<input type="submit" value="検索する" id="rest_search">
-<div class="row" id="rest_lists"></div>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="rev-card px-2 pb-2 pt-2">
+        <h1 class="title-h1">お店を検索する</h1>
+        <div class="result"></div>
+        <input type="hidden" value="<%= ENV["GURUNAVI_API_KEY"] %>" id="apikey">
+        <div class="webkit-center mt-5">
+          <input type="text" name="namae" id="name" class="form-control mr-sm-2 x-300 mt-4" placeholder="店名や地名で入力してください。">
+          <%= button_tag type: "submit", class: "btn btn-success inline mt-2 mb-4", id: "rest_search" do %>
+          <i class="fa fa-search" aria-hidden="true"></i>
+          検索する
+          <% end %>
+        </div>
+        <div class="row" id="rest_lists"></div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,9 +1,12 @@
 <%= form_with(url: restaurant_review_comments_path(review_id: review.id) ) do |form| %>
   <div id="comment_area">
-    <%= form.text_area :body %>
+    <%= form.text_area :body, class:"form-control mt-5", style: "width: 30em;" %>
     <%= form.hidden_field :review_id, value: review.id %><br>
   </div>
   <div class="actions">
-    <%= form.submit "コメントをする", id:"comment_btn" %>
+    <%= button_tag type: "submit", class: "btn-comment", id: "btn-comment" do %>
+      <i class="fa fa-commenting" aria-hidden="true"></i>
+      コメントする
+    <% end %>
   </div>
 <% end %>

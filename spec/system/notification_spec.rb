@@ -15,8 +15,9 @@ RSpec.describe "Notifications", type: :system do
         visit restaurant_review_path(restaurant_id: current_rest.id, id: current_rev.id)
         find("i", id: "uniine_like").click
         fill_in "body", with: "テストコメントです"
-        click_button "comment_btn"
-        click_link "ログアウト"
+        click_button id: "btn-comment"
+        click_on id: "navbarDropdown"
+        click_on id: "log_out"
       end
 
       it "通知ページにコメントといいねしたことが表示される" do
@@ -35,7 +36,7 @@ RSpec.describe "Notifications", type: :system do
         visit restaurant_review_path(restaurant_id: current_rest.id, id: current_rev.id)
         find("i", id: "uniine_like").click
         fill_in "body", with: "テストコメントです"
-        click_button "comment_btn"
+        click_button id: "btn-comment"
       end
 
       it "通知ページにコメントといいねしたことが表示されない" do

@@ -1,9 +1,41 @@
-<% comments.each do |comment| %>
-  <% unless comment.id.nil? %>
-    <p><%= link_to "#{comment.user.profile.name}さん" %></p>
-    <p>コメント：<%= comment.body %></p>
-    <% if comment.user == current_user %>
-      <p><%= link_to 'コメントを削除する', restaurant_review_comment_path(review_id: comment.review_id, id: comment.id), method: :delete, remote: true, data: {confirm: "このコメントを削除しますか？" } %></p>
+<div id="comments_area"><!-- #① -->
+  <h1 class="comments_title">コメント</h1>
+  <% if comments.present? %>
+    <% comments.each do |comment| %>
+      <% if comment.user == current_user %>
+        <div class="comment-area">
+          <div class="my-box24">
+            <p><%= safe_join(comment.body.split("\n"), tag(:br)) %></p>
+          </div>
+          <div class="my-comment-user">
+            <%= link_to restaurant_review_comment_path(review_id: comment.review_id, id: comment.id), method: :delete, remote: true, data: {confirm: "このコメントを削除しますか？" } do %>
+              <i class="fa fa-trash-o comment-destroy" aria-hidden="true" id="comment-destroy"></i>
+            <% end %>
+            <div class="my-comment-user-name">
+              <%= link_to profile_path(id: comment.user.profile.id) do %>
+                <%= render 'layouts/profile_icon', profile: comment.user.profile %>
+                <%= comment.user.profile.name %>さん
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% else %>
+        <div class="comment-area">
+          <div class="box24">
+            <p><%= safe_join(comment.body.split("\n"), tag(:br)) %></p>
+          </div>
+          <div class="comment-user">
+            <%= link_to profile_path(id: comment.user.profile.id) do %>
+              <%= render 'layouts/profile_icon', profile: comment.user.profile %>
+              <%= comment.user.profile.name %>さん
+            <% end %>
+          </div>
+        </div>
+      <% end %>
     <% end %>
+  <% else %>
+    <div class="comment-area">
+      <p class="nil-comment">まだコメントはありません</p>
+    </div>
   <% end %>
-<% end %>
+</div>

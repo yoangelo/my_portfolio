@@ -37,7 +37,8 @@ class RestaurantsController < ApplicationController
       image_url_2: params[:image_url_2],
       genre: params[:genre],
       subgenre: params[:subgenre],
-      prefecture: params[:prefecture]
+      prefecture: params[:prefecture],
+      opentime: params[:opentime]
     )
     if @restaurant.save
       puts "保存されました"

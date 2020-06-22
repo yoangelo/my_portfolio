@@ -1,10 +1,10 @@
-<div class="signup-modal-wrapper" id="signup-modal">
+<div class="signup-modal-wrapper col-12" id="signup-modal">
   <div class="log-modal">
     <div class="close-modal">
       <i class="fa fa-2x fa-times"></i>
     </div>
     <div class="signup-form">
-      <h2>ユーザー新規登録</h2>
+      <h2 class="title-h1">ユーザー新規登録</h2>
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
         <%= f.text_field :username, class: "form-ctl", placeholder: "名前(ニックネーム)", id: "new_profile_name" %>
@@ -23,7 +23,11 @@
 
       <%- if devise_mapping.omniauthable? %>
         <%- resource_class.omniauth_providers.each do |provider| %>
-          <%= link_to " #{OmniAuth::Utils.camelize(provider)}で新規登録", omniauth_authorize_path(resource_name, provider) %><br />
+          <%= link_to omniauth_authorize_path(resource_name, provider) do %>
+            <div id="twitter-submit-btn">
+              <i class="fa fa-twitter" aria-hidden="true"></i> Twitterで新規登録
+            </div>
+          <% end %><br />
         <% end %>
       <% end %>
     </div>
