@@ -23,9 +23,9 @@ $(function() {
           rest.forEach(function(e){
             $('#rest_lists').append(`
               <div class="col-lg-4">
-                <div class="card mt-5" style="width: 20rem;">
+                <div class="card mt-5 mb-4" style="width: 20rem;">
                   <img src="${e.image_url.shop_image1}" class="card-img-top" size="300x300">
-                  <div class="card-body">
+                  <div class="card-body webkit-center">
                     <h4 class="card-title">${e.name}</h4>
                     <span class="badge badge-success mr-1 mt-1 p-2">
                       ${e.code.prefname}
@@ -46,7 +46,13 @@ $(function() {
     }).fail(function() {
       if(cancelFlag == 0){
         cancelFlag = 1;
-        $('.result').append(`<li>検索結果は0件でした</li>`);
+        $('.result').append(`
+          <div id="error_explanation" class="alert alert-danger">
+            <ul>
+              <li>検索結果は0件でした</li>
+            </ul>
+          </div>
+          `);
       }
     });
   });
