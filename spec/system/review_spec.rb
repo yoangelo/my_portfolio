@@ -25,7 +25,7 @@ RSpec.describe "Reviews", js: true, type: :system do
         end
 
         it "投稿ページが表示されること" do
-          expect(page).to have_selector 'h1', text: "口コミを投稿する"
+          expect(page).to have_selector 'div', text: "口コミを投稿する"
           expect(page).to have_content "タグの入力"
           expect(page).to have_content "hoge"
         end
@@ -53,8 +53,8 @@ RSpec.describe "Reviews", js: true, type: :system do
 
         context "レビュー詳細" do
           it "詳細ページが表示されること" do
-            expect(page).to have_content "#{current_rest.name}の口コミ"
-            expect(page).to have_selector "span", class: "like"
+            expect(page).to have_content "#{current_rest.name}"
+            expect(page).to have_selector "div", class: "like"
           end
         end
 
@@ -64,7 +64,7 @@ RSpec.describe "Reviews", js: true, type: :system do
           end
 
           it "編集ページが表示されること" do
-            expect(page).to have_selector 'h1', text: '口コミを編集する'
+            expect(page).to have_selector 'div', text: '口コミを編集する'
             expect(page).to have_content "タグの入力"
           end
 
@@ -102,8 +102,8 @@ RSpec.describe "Reviews", js: true, type: :system do
           end
 
           it "詳細ページが表示されるが、編集・削除ボタンが表示されないこと" do
-            expect(page).to have_content "#{current_rest.name}の口コミ"
-            expect(page).to have_selector "span", class: "like"
+            expect(page).to have_content "#{current_rest.name}"
+            expect(page).to have_selector "div", class: "like"
             expect(page).not_to have_selector 'a', text: "編集する"
             expect(page).not_to have_selector 'a', text: "削除する"
           end
@@ -116,7 +116,7 @@ RSpec.describe "Reviews", js: true, type: :system do
 
           it "編集ページが表示されず、詳細ページにリダイレクトされること" do
             expect(page).to have_content "無効なURLです"
-            expect(page).to have_content "#{current_rest.name}の口コミ"
+            expect(page).to have_content "#{current_rest.name}"
           end
         end
       end
@@ -142,8 +142,8 @@ RSpec.describe "Reviews", js: true, type: :system do
         end
 
         it "詳細ページが表示されるが、編集・削除ボタンが表示されないこと" do
-          expect(page).to have_content "#{current_rest.name}の口コミ"
-          expect(page).to have_selector "span", class: "like"
+          expect(page).to have_content "#{current_rest.name}"
+          expect(page).to have_selector "div", class: "like"
           expect(page).not_to have_selector 'a', text: "編集する"
           expect(page).not_to have_selector 'a', text: "削除する"
         end

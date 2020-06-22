@@ -68,7 +68,7 @@ RSpec.describe 'Users', type: :system do
     end
 
     it "ログインできること" do
-      expect(page).to have_content "ログアウト"
+      expect(page).to have_content "口コミを投稿する"
     end
   end
 end
