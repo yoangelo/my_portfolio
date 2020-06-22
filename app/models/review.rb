@@ -71,7 +71,7 @@ class Review < ApplicationRecord
 
   def self.search(search)
     if search
-      Review.where(['body LIKE ?', "%#{search}%"])
+      Review.where(['body LIKE ? OR title LIKE ?', "%#{search}%", "%#{search}%"])
     else
       Review.all
     end
