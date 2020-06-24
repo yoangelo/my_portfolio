@@ -18,6 +18,16 @@ class Users::SessionsController < Devise::SessionsController
   #   super
   # end
 
+  def new_guest
+    user = User.guest
+    profile = Profile.new
+    profile.user_id = user.id
+    profile.name = user.username
+    profile.save
+    sign_in user
+    redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'
+  end
+
   # protected
 
   # If you have extra params to permit, append them to the sanitizer.
