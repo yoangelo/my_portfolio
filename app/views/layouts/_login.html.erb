@@ -10,6 +10,8 @@
         <%= f.password_field :password, autocomplete: "current-password", class:"form-ctl", placeholder: "パスワード", id: "login_user_password" %>
         <%= f.submit "ログインする", id:"submit-btn" %>
       <% end %>
+      <%= link_to 'ゲストユーザーでログイン', users_guest_sign_in_path, method: :post, class: "guest-submit-btn" %>
+      <br>
       <%= render "devise/shared/links" %>
     </div>
   </div>

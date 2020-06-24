@@ -842,6 +842,17 @@ color: #ff7171;
   cursor: pointer;
 }
 
+.guest-submit-btn {
+  display: inline-block;
+  padding: 6px 70px;
+  background-color: #5d98ca;
+  border: none;
+  border-radius: 3px;
+  color: white;
+  margin: 10px auto;
+  cursor: pointer;
+}
+
 #twitter-submit-btn {
   display: inline-block;
   padding: 8px 45px;
@@ -1023,9 +1034,8 @@ color: #ff7171;
   text-align: center;
 
   .notice {
-    background-color: #a5e6cb;
-    color: #9e9e9e;
-    font-weight: bold;
+    background-color: #4dc392;
+    padding: 0.75rem 1.25rem;
   }
 
   .alert {

@@ -16,7 +16,8 @@
         <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-ctl", placeholder: "パスワード(確認)", id: "new_user_password_confirmation" %>
         <%= f.submit "新規登録する" ,id:"submit-btn" %>
       <% end %>
-
+      <%= link_to 'ゲストユーザーでログイン', users_guest_sign_in_path, method: :post, class: "guest-submit-btn" %>
+      <br>
       <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
         <%= link_to "確認メールが届かない", new_confirmation_path(resource_name) %><br />
       <% end %>
