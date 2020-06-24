@@ -59,8 +59,8 @@ $(function() {
 
   $(document).on("click", "#submit", function(e) {
     var elm = $(this);
-    var checked_index = $("button").index(elm);
-    const post_index = checked_index - 1;
+    var post_index = $(".btn-primary").index(elm)-1;
+    console.log(post_index);
     $.ajax({
       type: "POST",
       url:  "/restaurants",
