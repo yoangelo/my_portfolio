@@ -26,9 +26,7 @@ RSpec.describe "Comments", type: :system do
       it "コメントができること", js: true do
         fill_in "body", with: "テストコメントです"
         click_button id: "btn-comment"
-        within "#comments_area" do
-          expect(page).to have_content "テストコメントです"
-        end
+        expect(page).to have_content "テストコメントです"
         expect(Comment.count).to eq 2
       end
 
@@ -49,7 +47,7 @@ RSpec.describe "Comments", type: :system do
       it "削除することができないこと" do
         expect(page).to have_selector "a", text: "anonymousさん"
         expect(page).to have_selector "textarea", id: "body"
-        expect(page).not_to have_content "コメントを削除する"
+        expect(page).not_to have_selector "i", id: "comment-destroy"
       end
     end
   end
