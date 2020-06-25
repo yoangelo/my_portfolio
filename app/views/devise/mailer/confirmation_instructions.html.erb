@@ -1,5 +1,9 @@
-<p>Welcome <%= @email %>!</p>
+<p>こんにちは <%= @email %>さん</p>
 
-<p>You can confirm your account email through the link below:</p>
+<p>Child Rest のご利用ありがとうございます。</p>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+<p>以下のリンクからアカウントの登録を完了させてください。</p>
+
+<p><%= link_to 'アカウントの登録', confirmation_url(@resource, confirmation_token: @token) %></p>
+
+<p>このメールに心当たりがない方は、申し訳ありませんが当メールを削除していただくようお願いいたします。</p>
