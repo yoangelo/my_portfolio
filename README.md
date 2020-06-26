@@ -1,24 +1,19 @@
-# README
+# Child Rest
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サービスの概要
 
-Things you may want to cover:
+## なぜこのサービスを作ったか
 
-* Ruby version
+## 使用技術
 
-* System dependencies
+### 環境
 
-* Configuration
+### インフラ
 
-* Database creation
+### ネットワーク構成図
 
-* Database initialization
+### ER図
 
-* How to run the test suite
+### 機能一覧
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### その他の技術
