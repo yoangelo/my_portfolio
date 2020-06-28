@@ -1,5 +1,7 @@
 # Child Rest
 
+![image](https://user-images.githubusercontent.com/56621211/85946004-73511b80-b97c-11ea-8a2c-ab2d35ffd6ba.png)
+
 ## アプリURL
 
 ワンタッチボタンでテストユーザーでログイン可能です。
