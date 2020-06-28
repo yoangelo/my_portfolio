@@ -1,6 +1,6 @@
 # Child Rest
 
-https://childress.com
+https://childrest.com
 
 ## サービスの概要
 転職活動用のポートフォリオとして作成しました。
