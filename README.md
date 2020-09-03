@@ -7,8 +7,6 @@
 
 ✉️ : kenose0328@gmail.com
 
-profile : https://www.wantedly.com/users/32710610
-
 ## 概要
 
 Ruby on Rails を独学し、そのポートフォリオとして作成しました。
