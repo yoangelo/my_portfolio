@@ -2,11 +2,6 @@
 
 ![image](https://user-images.githubusercontent.com/56621211/85946004-73511b80-b97c-11ea-8a2c-ab2d35ffd6ba.png)
 
-## 作成者の連絡先
-武野 聖也
-
-✉️ : kenose0328@gmail.com
-
 ## 概要
 
 Ruby on Rails を独学し、そのポートフォリオとして作成しました。
